@@ -1,0 +1,26 @@
+.titulo {
+    font-family: "Lato", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.btn {
+    font-family: "Latso", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 17px;
+}
+
+input {
+    border-style: solid;
+    border-color: rgb(117, 171, 233);
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.btn-primary:hover {
+    background-color: rgb(3, 65, 136);
+    border-color: rgb(3, 65, 136);
+}

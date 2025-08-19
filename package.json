@@ -1,0 +1,24 @@
+{
+  "name": "apphotelaria-front",
+  "version": "1.0.0",
+  "description": "description projeto front-end do sistema de reservas do hotel para wed",
+  "main": "src/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "hotel",
+    "gerenciamento",
+    "de",
+    "reservas",
+    "wed",
+    "front-end",
+    "javacript",
+    "react"
+  ],
+  "author": "Lanna Giullia,",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^5.3.7"
+  }
+}
