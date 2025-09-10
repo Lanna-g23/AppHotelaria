@@ -1,8 +1,8 @@
 <?php
 
 class PasswordController{
-    public static function generateHash($value){
-        return password_hash($value, PASSWORD_BCRYPT);
+    public static function generateHash($password){
+        return password_hash($password, PASSWORD_BCRYPT);
     }
 
     public static function validateHash($value, $hash){
@@ -10,11 +10,5 @@ class PasswordController{
     }
 
 }
-
-
-
-
-
-
 
 ?>

@@ -8,7 +8,7 @@ try{
     if($conn->connect_error){
         $erroDB = true;
     }
-}catch(mysqli_sql_exception $erro){
+}catch (mysqli_sql_exception $erro){
     $erroDB = true;
 }
 

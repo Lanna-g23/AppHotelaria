@@ -1,19 +1,18 @@
 <?php
-    require_once "../config/database.php";
-    require_once "../controlles/AuthController.php";
     $title = "Home";
 
-    $data = [
+    require_once '../config/database.php';
+    require_once '../controllers/AuthController.php';
+      
+    $data = [ 
         "email"=>"lanna@email.com",
-        "password"=>"3131"
+        "senha"=>"3131"
     ];
 
-    AuthControlle::login($conn, $data);
-
+    AuthController::login($conn, $data);
 ?>
-
     <h1>Home</h1>
-
+    
 <?php
-    require_once 'utils/rodape.php'
+    require_once 'utils/rodape.php';
 ?>

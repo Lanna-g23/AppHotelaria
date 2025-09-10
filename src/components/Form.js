@@ -1,4 +1,3 @@
-
 export default function Form() {
     const divRoot = document.getElementById('root');
     divRoot.innerHTML = '';

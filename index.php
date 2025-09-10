@@ -4,7 +4,7 @@ require_once "helpers/response.php";
 
 
 if($erroDB){
-    echo "erro na conexão";
+    echo "erro na conexao";
     exit;
 }
 
@@ -22,16 +22,17 @@ $subRoute = $segments[1] ??  null;
 
 if($route != "api"){
 
+    /*vão fica mudando*/ 
+   //require __DIR__ . "/public/index.html";
 
-   // require __DIR__ . "/public/index.html";
+   //vão fica mudando
     require "teste.php";
 
-    
     exit;
 }
 //back-end para rotas de requição (endpoint)
 elseif ($route === "api"){
-    if (in_array($subRoute, ["login"] )){
+    if (in_array($subRoute, ["login", "rooms"] )){
         require "routes/${subRoute}.php";
     }else{
         return jsonResponse(['message'=>'Rota da API não encontrada'], 404);

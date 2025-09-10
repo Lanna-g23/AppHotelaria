@@ -6,13 +6,9 @@ class UserModel{
        // $sql = "SELECT * FROM usuarios WHERE email = ?";
 
        $sql = "SELECT usuarios.id, usuarios.nome, usuarios.senha, usuarios.email, roles.nome AS roles
-FROM
-	usuarios
-JOIN
-	roles ON roles.id = usuarios.role_id
-WHERE
-	usuarios.email = ?";
-
+FROM usuarios
+JOIN roles ON roles.id = usuarios.role_id
+WHERE usuarios.email = ?";
 
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("s", $email);
@@ -20,17 +16,13 @@ WHERE
         $result = $stmt->get_result();
 
         if ($user = $result->fetch_assoc()){
-            if ($user ['senha'] === $password){
+            if (PasswordController::validateHash($password, $user['senha'])){
                 unset($user['senha']);
                 return $user;
             }
-            
         }
         return false;
-        
     }
 }
-
-
 
 ?>
