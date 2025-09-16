@@ -29,6 +29,13 @@ input {
     flex-direction: column;
 }
 
+.cards{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
 
 
 /*Hero Section*/

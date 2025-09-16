@@ -20,9 +20,15 @@ export default function renderHomePage(){
     const hero = Hero();
     divRoot.appendChild(hero);
 
+    const divCard = document.createElement('div');
+    divCard.innerHTML = '';
+    divCard.className = "cards"
 
-    const card = RoomCard();
-    divRoot.appendChild(card);
+for(var i = 0; i < 2; i++){
+    const cards = RoomCard();
+    divCard.appendChild(cards);
+}
+divRoot.appendChild(divCard);
 
     //Footer
 }
