@@ -24,6 +24,13 @@ input {
     background-color: rgb(3, 65, 136);
     border-color: rgb(3, 65, 136);
 }
+
+#root{
+    flex-direction: column;
+}
+
+
+
 /*Hero Section*/
 .hero-frame{
     overflow: hidden;
@@ -32,7 +39,7 @@ input {
 .hero img, .hero{
     /*Aplica propriedade cover para que a imagem preencha o quadro*/
     object-fit: cover;
-    object-position: center; /*Centraliza o recorte da imagem*/
+    object-position: top; /*Centraliza o recorte da imagem*/
     height: 70vh;
 }
 
