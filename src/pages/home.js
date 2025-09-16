@@ -21,7 +21,6 @@ export default function renderHomePage(){
     divRoot.appendChild(hero);
 
     const divCard = document.createElement('div');
-    divCard.innerHTML = '';
     divCard.className = "cards"
 
 for(var i = 0; i < 2; i++){

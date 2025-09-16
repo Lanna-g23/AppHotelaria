@@ -27,6 +27,8 @@ input {
 
 #root{
     flex-direction: column;
+    gap: 10vh;
+    margin-bottom: 10vh;
 }
 
 .cards{
