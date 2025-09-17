@@ -11,6 +11,19 @@ if($_SERVER['REQUEST_METHOD'] === "GET" ){
     }
 }
 
+elseif($_SERVER['REQUEST_METHOD'] === "POST" ){
+    $data = json_decode(file_get_contents('php://input'), true);
+    RoomController::create($conn, $data);
+
+}
+
+elseif($_SERVER['REQUEST_METHOD'] === "PUT" ){
+    $data = json_decode(file_get_contents('php://input'), true);
+    $id = $data['id'];
+    RoomController::update($conn, $id, $data);
+
+}
+
 elseif($_SERVER['REQUEST_METHOD'] === "DELETE" ){
     $id = $segments[2] ?? null;
 
@@ -20,6 +33,9 @@ elseif($_SERVER['REQUEST_METHOD'] === "DELETE" ){
         jsonResponse(['message' => "ID do quarto é obrigatório"], 400);
     }
 }
+
+
+
 
 
 ?>
