@@ -27,7 +27,15 @@ for(var i = 0; i < 2; i++){
     const cards = RoomCard();
     divCard.appendChild(cards);
 }
+
 divRoot.appendChild(divCard);
 
     //Footer
+
+     const fot = document.getElementById('footer');
+    fot.innerHTML = '';
+
+    const footer = footer();
+    fot.appendChild(footer);
+
 }

@@ -1,10 +1,13 @@
 <?php
 
-    require_once __DIR__ ."/controlles/AuthController.php";
-    require_once __DIR__ ."/controlles/RoomController.php";
-    require_once __DIR__ ."/controlles/PasswordController.php";
-    require_once __DIR__ ."/helpers/token_jwt.php";
-
+    require_once __DIR__ .'/controlles/AuthController.php';
+    require_once __DIR__ .'/controlles/RoomController.php';
+    require_once __DIR__ .'/controlles/PasswordController.php';
+    require_once __DIR__ .'/helpers/token_jwt.php';
+    require_once __DIR__ .'/models/RoomModel.php';
+    require_once __DIR__ .'/controlles/RoomController.php';
+    require_once __DIR__ .'/controlles/ClienteController.php';
+    require_once __DIR__ .'/controlles/AdicionalController.php';
 /*
     $data = [
         "nome" => "Quarto Supremo",
@@ -15,7 +18,11 @@
         "disponivel" => 1
     ];*/   
 
-    RoomController::getAll($conn);
+    $data = [
+        "nome" => "Lua",
+        "preco" => 200,
+    ];
+
 
    // AuthControlle::login($conn, $data);
 
