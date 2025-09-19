@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 import renderCartPage from "./pages/cart.js";
+=======
+>>>>>>> 621906bcdeb47591c987f029762fd38643463df6
 import renderHomePage from "./pages/home.js";
 import renderLoginPage from "./pages/login.js";
 import renderRegisterPage from "./pages/registra.js";
@@ -7,8 +10,12 @@ import renderRegisterPage from "./pages/registra.js";
 const routes = {
     "/login": renderLoginPage,
     "/register": renderRegisterPage,
+<<<<<<< HEAD
     "/home": renderHomePage,
     "/mincart": renderCartPage
+=======
+    "/home": renderHomePage
+>>>>>>> 621906bcdeb47591c987f029762fd38643463df6
     //Novas páginas aqui adicionadas conforme desenvolvidas
 };
 

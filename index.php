@@ -23,10 +23,17 @@ $subRoute = $segments[1] ??  null;
 if($route != "api"){
 
     /*vão fica mudando*/ 
+<<<<<<< HEAD
     require __DIR__ . "/public/index.html";
 
    //vão fica mudando
    //require "teste.php";
+=======
+   //require __DIR__ . "/public/index.html";
+
+   //vão fica mudando
+   require "teste.php";
+>>>>>>> 621906bcdeb47591c987f029762fd38643463df6
 
     exit;
 }
