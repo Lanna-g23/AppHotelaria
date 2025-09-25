@@ -27,17 +27,7 @@ input {
 
 #root{
     flex-direction: column;
-<<<<<<< HEAD
     gap: 5vh;
-    margin-bottom: 10vh;
-}
-
-=======
-<<<<<<< HEAD
-    gap: 5vh;
-=======
-    gap: 10vh;
->>>>>>> 621906bcdeb47591c987f029762fd38643463df6
     margin-bottom: 10vh;
 }
 
@@ -48,17 +38,11 @@ input {
     align-items: center;
     gap: 15px;
 }
-
-<<<<<<< HEAD
 .divDate{
     display:flex;
     justify-content: center;
     gap: 15px;
 }
-
-=======
->>>>>>> 621906bcdeb47591c987f029762fd38643463df6
->>>>>>> 27e06b41d1d2d52b11bd88228369c26bf1bc5d5b
 
 /*Hero Section*/
 .hero-frame{
@@ -68,11 +52,8 @@ input {
 .hero img, .hero{
     /*Aplica propriedade cover para que a imagem preencha o quadro*/
     object-fit: cover;
-<<<<<<< HEAD
     object-position: center; /*Centraliza o recorte da imagem*/
-=======
     object-position: top; /*Centraliza o recorte da imagem*/
->>>>>>> 27e06b41d1d2d52b11bd88228369c26bf1bc5d5b
     height: 70vh;
 }
 
@@ -80,7 +61,6 @@ input {
     .hero img, .hero{
         height: 50vh;
     }
-<<<<<<< HEAD
 }
 
 .cards{
@@ -91,11 +71,4 @@ input {
     gap: 35px;
 }
 
-.divDate{
-    display:flex;
-    justify-content: center;
-    gap: 15px;
-}
-=======
-}
->>>>>>> 27e06b41d1d2d52b11bd88228369c26bf1bc5d5b
+
