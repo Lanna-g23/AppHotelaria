@@ -5,7 +5,6 @@ export default function RoomCard() {
     card.innerHTML = 
     `
 <div class="card" style="width: 18rem;">
-<<<<<<< HEAD
     <div id="carouselExampleIndicators-${index}" class="carousel slide">
         <div class="carousel-indicators">
             <button class="visually-hidden" type="button" data-bs-target="#carouselExampleIndicators-${index}" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
