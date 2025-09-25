@@ -2,11 +2,7 @@
     $title = "Home";
 
     require_once '../config/database.php';
-<<<<<<< HEAD
     require_once '../controlles/AuthController.php';
-=======
-    require_once '../controllers/AuthController.php';
->>>>>>> 27e06b41d1d2d52b11bd88228369c26bf1bc5d5b
       
     $data = [ 
         "email"=>"lanna@email.com",
