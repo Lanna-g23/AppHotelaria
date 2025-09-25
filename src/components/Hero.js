@@ -27,13 +27,10 @@ export default function Hero(){
         <div class="carousel-caption d-none d-md-block">
           <h5>Second slide label</h5>
           <p>Some representative placeholder content for the second slide.</p>
-<<<<<<< HEAD
         </div>
         
-=======
         
         </div>
->>>>>>> 27e06b41d1d2d52b11bd88228369c26bf1bc5d5b
       </div>
 
       <div class="carousel-item">
@@ -55,15 +52,9 @@ export default function Hero(){
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>
-<<<<<<< HEAD
     </div>
 </div>`;
-=======
-
-    </div>
-</div>
       `
 
->>>>>>> 27e06b41d1d2d52b11bd88228369c26bf1bc5d5b
     return containerHero;
 }
