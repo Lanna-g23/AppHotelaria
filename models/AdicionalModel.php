@@ -1,4 +1,8 @@
 <?php
+<<<<<<< HEAD
+=======
+
+>>>>>>> 27e06b41d1d2d52b11bd88228369c26bf1bc5d5b
 class AdicionalModel{
 
     public static function create($conn, $data){
@@ -12,7 +16,11 @@ class AdicionalModel{
         return $stml->execute();
     }
 
+<<<<<<< HEAD
     public static function listarTodos($conn){
+=======
+    public static function getAll($conn){
+>>>>>>> 27e06b41d1d2d52b11bd88228369c26bf1bc5d5b
         $sql = "SELECT * from adicionais";
         $stmt = $conn->prepare($sql);
         $result = $conn->query($sql);

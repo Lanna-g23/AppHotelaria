@@ -19,8 +19,13 @@
     ];*/   
 
     $data = [
+<<<<<<< HEAD
         "nome" => "Queijo quente",
         "preco" => 100,
+=======
+        "nome" => "Lua",
+        "preco" => 200,
+>>>>>>> 27e06b41d1d2d52b11bd88228369c26bf1bc5d5b
     ];
 
 

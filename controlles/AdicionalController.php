@@ -10,8 +10,13 @@ class AdicionalController{
                 return jsonResponse(['message'=> 'Deu merda'], 400);
             }
         }
+<<<<<<< HEAD
         public static function listarTodos($conn){
             $listarAdicional = AdicionalModel::listarTodos($conn);
+=======
+        public static function getAll($conn){
+            $listarAdicional = AdicionalModel::getAll($conn);
+>>>>>>> 27e06b41d1d2d52b11bd88228369c26bf1bc5d5b
             return jsonResponse($listarAdicional);
         }
 
@@ -37,6 +42,9 @@ class AdicionalController{
                 return jsonResponse(['message'=> 'Deu erro'],404);
             }
         }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 27e06b41d1d2d52b11bd88228369c26bf1bc5d5b
     }
 ?>

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { loginRequest, saveToken } from "../api/authAPI.js";
+=======
+import { loginRequest } from "../api/AuthAPI.js";
+>>>>>>> 27e06b41d1d2d52b11bd88228369c26bf1bc5d5b
 import Form from "../components/Form.js";
 import Navbar from "../components/Navbar.js";
 import Footer from "../components/footer.js";
@@ -6,12 +10,18 @@ import Footer from "../components/footer.js";
 
 export default function renderLoginPage() {
 
+<<<<<<< HEAD
+=======
+
+export default function renderLoginPage() { 
+>>>>>>> 27e06b41d1d2d52b11bd88228369c26bf1bc5d5b
     const nav = document.getElementById('navbar');
     nav.innerHTML = '';
 
     const navbar = Navbar();
     nav.appendChild(navbar);
 
+<<<<<<< HEAD
     
     const fot = document.getElementById('footer');
     fot.innerHTML = '';
@@ -63,6 +73,30 @@ export default function renderLoginPage() {
     cadastrar.appendChild(criar);
 
     contentForm.insertBefore(cadastrar, contentForm.children[3]);
+=======
+    const formulario = Form();
+    const contentForm = formulario.querySelector('form');
+>>>>>>> 27e06b41d1d2d52b11bd88228369c26bf1bc5d5b
 
+    const inputEmail = contentForm.querySelector('input[type="email"]');
+    const inputSenha = contentForm.querySelector('input[type="password"]');
+    const btn = contentForm.querySelector('button[type="submit"]');
+
+    /*monitora o clique no botão para acionar um evento de submeter
+    os dados do form*/
+    contentForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const email = inputEmail.value.trim();
+        const senha = inputSenha.value.trim();
+
+        try{
+            const result = await loginRequest(email, senha);
+            console.log("login realizado com sucesso!");
+            //window.location.pathname = /home;
+        }catch{
+        console.log("erro inesperado!");
+        }        
+     
+    });
 }
 

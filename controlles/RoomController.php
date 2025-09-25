@@ -3,6 +3,7 @@ require_once __DIR__ . "/../models/RoomModel.php";
 
 class RoomController{
     public static function create($conn, $data){
+<<<<<<< HEAD
 
         $camposOb = ["nome", "numero", "qtd_cama_solterio", "qtd_cama_casal", "preco", "disponivel"];
         $erros = [];
@@ -16,6 +17,8 @@ class RoomController{
             return jsonResponse(['message'=> 'Erro, falta o comando: ' . implode(',', $erros)], 404);
         }
 
+=======
+>>>>>>> 27e06b41d1d2d52b11bd88228369c26bf1bc5d5b
         $result = RoomModel::create($conn, $data);
         if($result){
             return jsonResponse(['message'=>"Quarto criado com sucesso"]);

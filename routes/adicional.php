@@ -7,7 +7,11 @@
         if(isset($data)){
             AdicionalController::getById($conn, $id);
         }else{
+<<<<<<< HEAD
             AdicionalController::listarTodos($conn);
+=======
+            AdicionalController::getAll($conn);
+>>>>>>> 27e06b41d1d2d52b11bd88228369c26bf1bc5d5b
         }
     }
     

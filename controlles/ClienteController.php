@@ -3,8 +3,11 @@
 
     class ClienteController{
         public static function create($conn, $data){
+<<<<<<< HEAD
             $data['senha'] = PasswordController::generateHash($data['senha']);
 
+=======
+>>>>>>> 27e06b41d1d2d52b11bd88228369c26bf1bc5d5b
             $result = ClientModel::create($conn, $data);
             if($result){
                 return jsonResponse(['message'=> 'Cliente criado com sucesso']);
@@ -13,9 +16,15 @@
             }
         }
 
+<<<<<<< HEAD
         public static function listarTodos($conn){
             $clienteList = ClientModel::listarTodos($conn);
             return jsonResponse($clienteList);
+=======
+        public static function getAll($conn){
+            $listaClientes = ClientModel::getAll($conn);
+            return jsonResponse($listaClientes);
+>>>>>>> 27e06b41d1d2d52b11bd88228369c26bf1bc5d5b
         }
 
         public static function getBydId($conn, $id){
