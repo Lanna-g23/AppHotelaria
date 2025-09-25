@@ -1,0 +1,33 @@
+export default function DateSelector(){
+const divDate = document.createElement('div');
+divDate.className = 'divDate';
+
+const dateCheckIn = document.createElement('input');
+dateCheckIn.type = 'date';
+dateCheckIn.className = 'card p-2 shadow-lg inputDate';
+
+const dateCheckOut = document.createElement('input');
+dateCheckOut.type = 'date';
+dateCheckOut.className = 'card p-2 shadow-lg inputDate';
+
+const guestAmount = document.createElement('select');
+guestAmount.className = 'card p-2 shadow-lg inputDate';
+guestAmount.innerHTML =
+`
+    <option value="">Quantas Pessoas?</option>
+    <option value="1">Pessoa</option>
+    <option value="2">Pessoas</option>
+    <option value="3">Pessoas</option>
+    <option value="4">Pessoas</option>
+    <option value="5">5 ou mais Pessoas</option>`;
+
+const btnSearchRoom = document.createElement('button');
+btnSearchRoom.type = 'submit';
+btnSearchRoom.textContent = 'Pesquisar';
+btnSearchRoom.className = 'btn btn-primary';
+divDate.appendChild(dateCheckIn);
+divDate.appendChild(dateCheckOut);
+divDate.appendChild(guestAmount);
+divDate.appendChild(btnSearchRoom);
+return divDate;
+}
