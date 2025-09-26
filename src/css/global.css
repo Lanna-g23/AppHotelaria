@@ -66,6 +66,7 @@ input {
 }
 
 .hero img, .hero{
+.hero img {
     /*Aplica propriedade cover para que a imagem preencha o quadro*/
     object-fit: cover;
 <<<<<<< HEAD
@@ -78,6 +79,7 @@ input {
 
 @media (max-width: 576px){
     .hero img, .hero{
+    .hero img {
         height: 50vh;
     }
 <<<<<<< HEAD
@@ -97,5 +99,11 @@ input {
     gap: 15px;
 }
 =======
+
+.cardContainer img {
+    object-fit: cover;
+    object-position: center; /*Centraliza o recorte da imagem*/
+    height: 20vh;
+
 }
 >>>>>>> 27e06b41d1d2d52b11bd88228369c26bf1bc5d5b
