@@ -1,6 +1,5 @@
 <?php
 require_once __DIR__ . "/../controlles/PasswordController.php";
-
 class ClientModel{
     public static function create($conn, $data){
         $sql = "INSERT INTO clientes (nome, cpf, telefone, email, senha) VALUES (?, ?, ?, ?, ?)";
@@ -14,7 +13,6 @@ class ClientModel{
         );
         return $stmt->execute();
     }
-
     public static function getAll($conn){
             $sql = "SELECT * FROM clientes";
             $result = $conn->query($sql);
@@ -50,7 +48,6 @@ class ClientModel{
 
         return $stmt->execute();
     }
-
 }
 
 ?>

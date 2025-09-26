@@ -31,6 +31,19 @@ input {
     margin-bottom: 10vh;
 }
 
+.cards{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+.divDate{
+    display:flex;
+    justify-content: center;
+    gap: 15px;
+}
+
 
 /*Hero Section*/
 .hero-frame{
@@ -41,6 +54,7 @@ input {
     /*Aplica propriedade cover para que a imagem preencha o quadro*/
     object-fit: cover;
     object-position: center; /*Centraliza o recorte da imagem*/
+    object-position: top; /*Centraliza o recorte da imagem*/
     height: 70vh;
 }
 

@@ -18,6 +18,7 @@
 
     elseif($_SERVER['REQUEST_METHOD'] === "POST"){
         $data = json_decode(file_get_contents("php://input"), true);
+
         ClientController::create($conn, $data);
     }   
     
@@ -25,5 +26,6 @@
         $data = json_decode(file_get_contents("php://input"), true);
         $id = $data["id"] ?? null;
         ClientController::delete($conn, $id);
+
     }
 ?>
