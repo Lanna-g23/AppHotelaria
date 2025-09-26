@@ -15,7 +15,6 @@ export async function loginRequest(email, senha) {
         Back: http://localhost/appHotelaria/api/login.php */
         credentials: "same-origin"
     });
-<<<<<<< HEAD
     
     //Interpreta a resposta como JSON
     let data = null;
@@ -36,22 +35,6 @@ export async function loginRequest(email, senha) {
     return{
         ok: true,
         token: data.token,
-=======
-    console.log('response:', response);
-
-    //Interpreta a resposta como JSON
-    let data = null;
-    try{
-        data = await response.json();
-    }
-    catch{
-        // Se Não for JSON válido, data permanece null
-        data = null;
-    }
-    return{
-        ok: true,
-        user: data.user ?? null,
->>>>>>> 27e06b41d1d2d52b11bd88228369c26bf1bc5d5b
         raw: data
     };
     
@@ -61,7 +44,6 @@ export async function loginRequest(email, senha) {
     e ainda assim permanecer logado, DESDE QUE NAO TENHA EXPIRADO (1 HORA)*/
     export function saveToken(token){
         localStorage.setItem("auth_token", token);
-<<<<<<< HEAD
     }
 
     export function getToken() {
@@ -70,7 +52,4 @@ export async function loginRequest(email, senha) {
 
     export function clearToken() {
         localStorage.removeItem("auth_token");
-=======
-        
->>>>>>> 27e06b41d1d2d52b11bd88228369c26bf1bc5d5b
     }

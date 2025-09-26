@@ -1,10 +1,5 @@
 <?php
-<<<<<<< HEAD
 require_once __DIR__ . "/../controlles/PasswordController.php";
-=======
-
-require_once __DIR__ ."controlles/PasswordController.php";
->>>>>>> 27e06b41d1d2d52b11bd88228369c26bf1bc5d5b
 
 class ClientModel{
     public static function create($conn, $data){
@@ -20,11 +15,7 @@ class ClientModel{
         return $stmt->execute();
     }
 
-<<<<<<< HEAD
-    public static function listaTodos($conn){
-=======
     public static function getAll($conn){
->>>>>>> 27e06b41d1d2d52b11bd88228369c26bf1bc5d5b
             $sql = "SELECT * FROM clientes";
             $result = $conn->query($sql);
             return $result->fetch_all(MYSQLI_ASSOC);
@@ -59,10 +50,7 @@ class ClientModel{
 
         return $stmt->execute();
     }
-<<<<<<< HEAD
 
-=======
->>>>>>> 27e06b41d1d2d52b11bd88228369c26bf1bc5d5b
 }
 
 ?>

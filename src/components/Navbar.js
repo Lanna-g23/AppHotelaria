@@ -1,7 +1,7 @@
 export default function Navbar(){
-    
     const navbar = document.createElement('div');
     navbar.innerHTML = `
+    
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
         <a class="navbar-brand" href="home"><img src="public/assets/img/Logo.png" style = "width: 100px; height: 70px;"></a>

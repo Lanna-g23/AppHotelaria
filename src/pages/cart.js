@@ -1,7 +1,6 @@
-<<<<<<< HEAD
-import barraCategoria from "../components/quartosInformacoes.js";
+import barraCategoria from "../components/Categoria.js";
 import Navbar from "../components/Navbar.js";
-import quartosInformacoes from "../components/barraCategoria.js";
+import quartosInformacoes from "../components/RoomsInfo.js";
 
 export default function renderCartPage(){
 
@@ -27,22 +26,3 @@ export default function renderCartPage(){
 
     //Footer
 }
-=======
-import Navbar from "../components/Navbar";
-//importar componente Footer
-
-export default function renderCartPage(){
-
-    //Navbar
-    const nav = document.getElementById('navbar');
-    nav.innerHTML = '';
-    const navbar = Navbar();
-    nav.appendChild(navbar);
-
-     const divRoot = document.getElementById('root');
-    divRoot.innerHTML = '';
-
-    //Footer
-
-}
->>>>>>> 27e06b41d1d2d52b11bd88228369c26bf1bc5d5b
