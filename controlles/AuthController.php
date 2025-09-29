@@ -7,7 +7,6 @@
         public static function login($conn, $data){
             $data['email'] = trim($data['email']);
             $data['password'] = trim($data['password']);
-
             //confimar se tem algum vazio
             if(empty($data['email']) || empty($data['password'])){
                 return jsonResponse([
