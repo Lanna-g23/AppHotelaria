@@ -16,16 +16,11 @@
         "preco" => 350,
         "disponivel" => 1
     ];*/   
-
     $data = [
         "nome" => "Lua",
         "preco" => 200,
     ];
-
-
    // AuthControlle::login($conn, $data);
-
-
 
     //echo PasswordController::generateHash($data['password']);
 

@@ -12,7 +12,6 @@
                 return jsonResponse(['message'=> 'Deu merda'], 400);
             }
         }
-        
         public static function getAll($conn){
             $listaClientes = ClientModel::getAll($conn);
             return jsonResponse($listaClientes);
