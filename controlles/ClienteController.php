@@ -12,11 +12,7 @@
                 return jsonResponse(['message'=> 'Deu merda'], 400);
             }
         }
-
-        public static function listarTodos($conn){
-            $clienteList = ClientModel::listarTodos($conn);
-            return jsonResponse($clienteList);
-            
+        
         public static function getAll($conn){
             $listaClientes = ClientModel::getAll($conn);
             return jsonResponse($listaClientes);

@@ -38,5 +38,4 @@ elseif($_SERVER['REQUEST_METHOD'] === "DELETE" ){
             'message'=>'Método não permitido'
         ], 405);
     }
-
 ?>

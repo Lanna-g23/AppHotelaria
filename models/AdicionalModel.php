@@ -1,6 +1,5 @@
 <?php
 class AdicionalModel{
-
     public static function create($conn, $data){
         $sql = "INSERT INTO adicionais (nome, preco) VALUES (?,?)";
         $stml = $conn->prepare($sql);
@@ -11,9 +10,6 @@ class AdicionalModel{
         );
         return $stml->execute();
     }
-    
-    public static function listarTodos($conn){
-        
     public static function getAll($conn){
         $sql = "SELECT * from adicionais";
         $stmt = $conn->prepare($sql);

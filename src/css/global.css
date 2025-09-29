@@ -44,7 +44,6 @@ input {
     gap: 15px;
 }
 
-
 /*Hero Section*/
 .hero-frame{
     overflow: hidden;
@@ -54,8 +53,6 @@ input {
     /*Aplica propriedade cover para que a imagem preencha o quadro*/
     object-fit: cover;
     object-position: center; /*Centraliza o recorte da imagem*/
-    object-position: top; /*Centraliza o recorte da imagem*/
-    height: 70vh;
 }
 
 @media (max-width: 576px){
@@ -72,11 +69,6 @@ input {
     gap: 35px;
 }
 
-.divDate{
-    display:flex;
-    justify-content: center;
-    gap: 15px;
-}
 
 .cardContainer img {
     object-fit: cover;

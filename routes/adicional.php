@@ -7,7 +7,6 @@
         if(isset($data)){
             AdditionalController::getById($conn, $id);
         }else{
-
             AdditionalController::getAll($conn);
         }
     }

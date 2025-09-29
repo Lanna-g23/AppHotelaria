@@ -26,8 +26,6 @@ if($route != "api"){
 
    //vão fica mudando
    //require "teste.php";
-
-
     exit;
 }
 //back-end para rotas de requição (endpoint)
