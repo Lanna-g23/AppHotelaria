@@ -1,17 +1,22 @@
 import Form from "../components/Form.js";
 import Navbar from "../components/Navbar.js";
+import Footer from "../components/Footer.js";
 
 export default function renderRegisterPage() {
+    
     const nav = document.getElementById('navbar');
     nav.innerHTML = '';
-    
     const navbar = Navbar();
     nav.appendChild(navbar);
 
+    const fot = document.getElementById('footer');
+    fot.innerHTML = '';
+    const footer = Footer();
+    fot.appendChild(footer);
+
     const formulario = Form();
-   
     const titulo = formulario.querySelector('h1');
-    titulo.textContent = "Cadastre-se";
+    titulo.textContent = 'Cadastre-se';
 
     //Seleciono o elemento form que está presente em ./components/Form.js
     const contentForm = formulario.querySelector('form');
@@ -19,6 +24,7 @@ export default function renderRegisterPage() {
     //Criar o input para nome e adicionar em contentForm
     const nome = document.createElement('input');
     nome.type = 'text';
+    nome.className = 'inputs';
     nome.placeholder = "Digite seu nome";
 
     /*Para adicionar input nome ao contentForm, localizo onde está input email pois
@@ -29,7 +35,8 @@ export default function renderRegisterPage() {
     //Criar o input para confirmar senha
     const confSenha = document.createElement('input');
     confSenha.type = 'password';
-    confSenha.placeholder = "Confirme sua senha";
+    confSenha.placeholder = 'Confirme sua senha';
+    confSenha.className = 'inputs',
 
     /*Adicionar confSenha como "child" de form que já contém
         4 elementos: input nome[0], input email[1], input password[2],
@@ -41,7 +48,7 @@ export default function renderRegisterPage() {
 
 
     const btnRegister = formulario.querySelector('button');
-    btnRegister.textContent = "Criar conta";
+    btnRegister.textContent = 'Criar conta';
 
 
 }

@@ -24,3 +24,49 @@ input {
     background-color: rgb(3, 65, 136);
     border-color: rgb(3, 65, 136);
 }
+
+#root{
+    flex-direction: column;
+    gap: 10vh;
+    margin-bottom: 10vh;
+}
+
+
+/*Hero Section*/
+.hero-frame{
+    overflow: hidden;
+}
+
+.hero img {
+    /*Aplica propriedade cover para que a imagem preencha o quadro*/
+    object-fit: cover;
+    object-position: center; /*Centraliza o recorte da imagem*/
+    height: 70vh;
+}
+
+@media (max-width: 576px){
+    .hero img {
+        height: 50vh;
+    }
+}
+
+.cards{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+}
+
+.divDate{
+    display:flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.cardContainer img {
+    object-fit: cover;
+    object-position: center; /*Centraliza o recorte da imagem*/
+    height: 20vh;
+
+}
