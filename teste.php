@@ -5,8 +5,7 @@
     require_once __DIR__ .'/controlles/PasswordController.php';
     require_once __DIR__ .'/helpers/token_jwt.php';
     require_once __DIR__ .'/models/RoomModel.php';
-    require_once __DIR__ .'/controlles/RoomController.php';
-    require_once __DIR__ .'/controlles/ClienteController.php';
+    require_once __DIR__ .'/controlles/ClientController.php';
     require_once __DIR__ .'/controlles/AdicionalController.php';
 /*
     $data = [

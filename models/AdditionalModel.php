@@ -12,7 +12,7 @@ class AdditionalModel{
         return $stml->execute();
     }
 
-    public static function listarTodos($conn){
+    public static function getAll($conn){
         $sql = "SELECT * from adicionais";
         $stmt = $conn->prepare($sql);
         $result = $conn->query($sql);

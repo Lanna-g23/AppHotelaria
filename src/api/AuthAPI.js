@@ -52,6 +52,4 @@ export async function loginRequest(email, senha) {
 
     export function clearToken() {
         localStorage.removeItem("auth_token");
-
     }
-

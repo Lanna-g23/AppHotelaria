@@ -4,6 +4,7 @@ require_once __DIR__ . "/../controlles/RoomController.php";
 if($_SERVER['REQUEST_METHOD'] === "GET" ){
     $data = json_decode(file_get_contents('php://input'), true);
     $id = $data["id"] ?? null;
+
     if (isset($id)){
         RoomController::getById($conn, $id);
     }else{
@@ -33,9 +34,11 @@ elseif($_SERVER['REQUEST_METHOD'] === "DELETE" ){
         jsonResponse(['message' => "ID do quarto é obrigatório"], 400);
     }
 }else{
-        jsonResponse([
-            'status'=>'erro',
-            'message'=>'Método não permitido'
-        ], 405);
-    }
+    jsonResponse([
+        'status'=>'erro',
+        'message'=>'Método não permitido'
+    ], 405);
+}
+
+
 ?>

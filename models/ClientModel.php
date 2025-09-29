@@ -14,6 +14,7 @@ class ClientModel{
         );
         return $stmt->execute();
     }
+
     public static function getAll($conn){
             $sql = "SELECT * FROM clientes";
             $result = $conn->query($sql);
@@ -52,4 +53,5 @@ class ClientModel{
 
 }
 
+?>
 ?>

@@ -8,6 +8,7 @@ if($erroDB){
     exit;
 }
 
+
 $uri = Strtolower(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 $method = $_SERVER['REQUEST_METHOD'];
 
@@ -26,6 +27,7 @@ if($route != "api"){
 
    //vão fica mudando
    //require "teste.php";
+
     exit;
 }
 //back-end para rotas de requição (endpoint)
@@ -42,3 +44,4 @@ elseif ($route === "api"){
         exit;
     }
 
+?>

@@ -45,4 +45,3 @@ export default function RoomCard(index) {
     return containerCard;
 
 }
-

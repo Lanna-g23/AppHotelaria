@@ -13,14 +13,7 @@
     elseif($_SERVER['REQUEST_METHOD'] === "PUT"){
         $data = json_decode(file_get_contents("php://input"), true);
         $id = $data["id"] ?? null;
-
         ClientController::update($conn, $id, $data);
-    }
-
-    elseif($_SERVER['REQUEST_METHOD'] === "DELETE"){
-        $data = json_decode(file_get_contents("php://input"), true);
-        $id = $data["id"] ?? null;
-        ClientController::delete($conn, $id);
     }
 
     elseif($_SERVER['REQUEST_METHOD'] === "POST"){

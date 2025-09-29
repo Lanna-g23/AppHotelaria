@@ -47,7 +47,7 @@ export default function Hero(){
         <span class="visually-hidden">Next</span>
       </button> 
     </div>
-</div>`;
+</div>`
+
     return containerHero;
 }  
-
