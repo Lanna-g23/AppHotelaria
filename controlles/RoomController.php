@@ -3,6 +3,7 @@ require_once __DIR__ . "/../models/RoomModel.php";
 
 class RoomController{
     public static function create($conn, $data){
+
         $camposOb = ["nome", "numero", "qtd_cama_solterio", "qtd_cama_casal", "preco", "disponivel"];
         $erros = [];
 
