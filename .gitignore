@@ -1,2 +1,3 @@
 config/config.php
-bootstrap/
+bootstrap/bootstrap/
+/controlles
