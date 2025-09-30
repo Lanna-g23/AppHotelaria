@@ -17,11 +17,12 @@
         "disponivel" => 1
     ];*/   
 
-    $data = [
-        "nome" => "Lua",
-        "preco" => 200,
-    ];
+   // $data = [
+    //    "nome" => "Lua",
+    //    "preco" => 200,
+    //];
 
+    RoomController::getAll($conn);
 
    // AuthControlle::login($conn, $data);
 

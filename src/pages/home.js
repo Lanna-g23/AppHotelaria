@@ -41,4 +41,5 @@ export default function renderHomePage(){
     const footer = Footer();
     fot.appendChild(footer);
 
+
 }

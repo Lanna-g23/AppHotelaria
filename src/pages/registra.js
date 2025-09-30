@@ -30,6 +30,7 @@ export default function renderRegisterPage() {
     /*Para adicionar input nome ao contentForm, localizo onde está input email pois
     quero necessariamente adicionar anteriormente a ele */
     const inputEmail = formulario.querySelector('input[type="email"]');
+    
     contentForm.insertBefore(nome, inputEmail);
 
     //Criar o input para confirmar senha

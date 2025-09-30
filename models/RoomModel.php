@@ -53,6 +53,25 @@ public static function update($conn, $id, $data){
         return $stmt->execute();
     }
 
+    public static function get_available($conn,$data){
+        $sql = "SELECT *
+        FROM quartos
+        WHERE quartos.disponivel = 1
+        AND (quartos.qtd_cama_solteiro * 2 + quartos.qtd_cama_casal) >= ?
+        AND quartos.id NOT IN (
+            SELECT reservas.quarto_id
+            FROM reservas
+            WHERE (reservas.inicio <= ? AND reservas.fim >= ?))";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("iss", 
+            $data["qtd"],
+            $data["inicio"],
+            $data["fim"],
+        );
+        $stmt->execute();
+        return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    }
+
 }
 
 ?>

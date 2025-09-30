@@ -1,28 +1,24 @@
 <?php
 require_once __DIR__ . "/../models/RoomModel.php";
+require_once "ValidatorController.php";
 
 class RoomController{
-    public static function create($conn, $data){
+    public static $labels = ["nome", "numero", "qtd_cama_solterio", "qtd_cama_casal", "preco", "disponivel"];
 
-        $camposOb = ["nome", "numero", "qtd_cama_solterio", "qtd_cama_casal", "preco", "disponivel"];
-        $erros = [];
+         public static function create($conn, $data){
 
-        foreach ($camposOb as $campo){
-            if (!isset($data[$campo]) || empty($data[$campo])){
-                $erros[] = $campo;
+            if (!empty($validar)){
+
+                $dados = implode(",", $validar);
+                return jsonResponse(['message'=>"Erro, Falta o campo: ".$dados], 404);
+            }
+            $result = RoomModel::create($conn, $data);
+            if ($result){
+                return jsonResponse(['message'=>"Quarto criado com sucesso"]);
+            }else{
+                return jsonResponse(['message'=>"Erro ao criar o quarto"], 400);
             }
         }
-        if(!empty($erros)){
-            return jsonResponse(['message'=> 'Erro, falta o comando: ' . implode(',', $erros)], 404);
-        }
-
-        $result = RoomModel::create($conn, $data);
-        if($result){
-            return jsonResponse(['message'=>"Quarto criado com sucesso"]);
-        }else{
-            return jsonResponse(['message'=>"Erro ao criar o quarto"], 400);
-        }
-    }
 
     public static function getAll($conn){
         $roomList = RoomModel::getAll($conn);
@@ -30,16 +26,24 @@ class RoomController{
     }
 
       public static function getById($conn, $id){
+        if( empty($id) ){
+            return jsonResponse(['message'=>"Erro, Falta o campo: id"], 405);
+        }
+
         $buscarId = RoomModel::getById($conn, $id);
         return jsonResponse($buscarId);
     }
 
      public static function delete($conn, $id){
+        if( empty($id) ){
+            return jsonResponse(['message'=>"Erro, Falta o campo: id"], 406);
+        }
+
         $result = RoomModel::delete($conn, $id);
         if ($result){
             return jsonResponse(['message'=>"Quarto excluido com sucesso"]);
         }else{
-            return jsonResponse(['message'=>"Erro ao excluir o quarto"], 400);
+            return jsonResponse(['message'=>"Erro ao excluir o quarto"], 409);
         }
     }
 
@@ -48,7 +52,16 @@ class RoomController{
         if($result){
             return jsonResponse(['message'=> 'Quarto atualizado com sucesso']);
         }else{
-            return jsonResponse(['message'=> 'Deu merda'], 400);
+            return jsonResponse(['message'=> 'Deu merda'], 403);
+        }
+    }
+
+    public static function get_available($conn, $data){
+        $result = RoomModel::get_available($conn, $data);
+        if($result){
+            return jsonResponse(['Quartos'=> $result]);
+        }else{
+            return jsonResponse(['message'=> 'asdasdasd'], 401);
         }
     }
 
