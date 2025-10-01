@@ -5,7 +5,7 @@
         $data = json_decode(file_get_contents('php://input'), true);
         $id = $data['id'] ?? null;
         if(isset($id)){
-            ClientController::getBydId($conn,$id);
+            ClientController::getBydId($conn, $id);
         }else{
             ClientController::getAll($conn);
         }

@@ -1,7 +1,7 @@
 /* getToken() é uma função que retorna o valor do token armazenado no localStorage(), para que o usuario permaneça logado mesmo que mude 
 de pagina e nao tenha "re-logar" */
 
-import { getToken } from "./authAPI";
+import { getToken } from "./AuthAPI";
 
 // Listar todos os quartos independente de filtro 
 export async function listRoomsRequest(){

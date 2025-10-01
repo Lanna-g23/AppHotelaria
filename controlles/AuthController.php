@@ -3,6 +3,7 @@
     require_once __DIR__ . "/../helpers/token_jwt.php";
     require_once "PasswordController.php";
 
+
     class AuthControlle{
         public static function login($conn, $data){
             $data['email'] = trim($data['email']);
@@ -24,7 +25,8 @@
                     "reposta" => "Erro",
                     "message" => "Credenciais invalidas !!"], 401);
                 }
-            
+        
+                
             }
         
         }

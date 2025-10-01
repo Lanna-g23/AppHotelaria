@@ -51,20 +51,19 @@ class ClientModel{
         return $stmt->execute();
     }
     
-    public static function clientValidation($conn, $email, $password) {
-        $sql = "SELECT clientes.id, clientes.email, clientes.senha, clientes.nome FROM clientes WHERE clientes.email = ?";
+    public static function validationUserLogin($conn, $email, $password) {
+        $sql = "SELECT usuarios.id, usuarios.nome, usuarios.email, usuarios.senha, roles.nome AS cargo FROM usuarios JOIN roles ON roles.id = usuarios.role_id WHERE usuarios.email = ?;";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();
  
-        if($client = $result->fetch_assoc()) {
-       
-            if(PasswordController::validateHash($password, $client['senha'])) {
-                unset($client['senha']);
-                return $client;  
+        if($user = $result->fetch_assoc()) {
+            if(PasswordController::validateHash($password, $user['senha'])) {
+                unset($user['senha']);
+                return $user;  
             }
-        return false;
+            return false;
         }
     }
 }

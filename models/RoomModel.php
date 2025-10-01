@@ -1,10 +1,8 @@
 <?php
-
 class RoomModel{
 
     public static function create($conn, $data){
         $sql = "INSERT INTO quartos (nome, numero, qtd_cama_solteiro, qtd_cama_casal, preco, disponivel) VALUES (?, ?, ?, ?, ?, ?)";
-
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("siiidi", 
             $data["nome"],
@@ -15,7 +13,8 @@ class RoomModel{
             $data["disponivel"]
         );
         return $stmt->execute();
-}
+    }
+
     public static function getAll($conn){
         $sql = "SELECT * FROM quartos";
         $result = $conn->query($sql);
@@ -57,11 +56,8 @@ public static function update($conn, $id, $data){
         $sql = "SELECT *
         FROM quartos
         WHERE quartos.disponivel = 1
-        AND (quartos.qtd_cama_solteiro * 2 + quartos.qtd_cama_casal) >= ?
-        AND quartos.id NOT IN (
-            SELECT reservas.quarto_id
-            FROM reservas
-            WHERE (reservas.inicio <= ? AND reservas.fim >= ?))";
+        AND (quartos.qtd_cama_casal * 2 + quartos.qtd_cama_solteiro) >= ? AND NOT EXISTS ( SELECT 1 FROM reservas r WHERE r.quarto_id = q.id AND r.inicio < ? AND r.fim > ?)";
+        
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("iss", 
             $data["qtd"],

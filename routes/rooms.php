@@ -3,10 +3,18 @@ require_once __DIR__ . "/../controlles/RoomController.php";
 
 if($_SERVER['REQUEST_METHOD'] === "GET" ){
     $data = json_decode(file_get_contents('php://input'), true);
-    $id = $data["id"] ?? null;
+    $id = $segments[2] ?? null;
 
     if (isset($id)){
-        RoomController::getById($conn, $id);
+        if(is_numeric($id)){
+            RoomController::getById($conn, $id);
+        }else{
+            //pode dar error depois
+            $inicio = isset($_GET['inicio']) ? $_GET['inicio'] : null;
+            $fim = isset($_GET['fim']) ? $_GET['fim'] : null;
+            $qtd = isset($_GET['qtd']) ? $_GET['qtd'] : null;
+            RoomController::get_available($conn, ["inicio"=>$inicio, "fim"=>$fim, "qtd"=>$qtd]); 
+        }
     }else{
         RoomController::getAll($conn);
     }
@@ -26,7 +34,7 @@ elseif($_SERVER['REQUEST_METHOD'] === "PUT" ){
 }
 
 elseif($_SERVER['REQUEST_METHOD'] === "DELETE" ){
-    $id = $data["id"] ?? null;
+    $id = $segments[2] ?? null;
 
     if (isset($id)){
         RoomController::delete($conn, $id);
@@ -35,10 +43,9 @@ elseif($_SERVER['REQUEST_METHOD'] === "DELETE" ){
     }
 }else{
     jsonResponse([
-        'status'=>'erro',
+        'status'=>'Erro',
         'message'=>'Método não permitido'
     ], 405);
 }
-
 
 ?>

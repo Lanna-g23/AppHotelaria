@@ -3,22 +3,28 @@ require_once __DIR__ . "/../models/RoomModel.php";
 require_once "ValidatorController.php";
 
 class RoomController{
-    public static $labels = ["nome", "numero", "qtd_cama_solterio", "qtd_cama_casal", "preco", "disponivel"];
+    public static function create($conn, $data){
 
-         public static function create($conn, $data){
+        $camposObrigatorios = ["nome", "numero", "qtd_cama_casal", "qtd_cama_solteiro", "preco", "disponivel"];
+        $erros = [];
 
-            if (!empty($validar)){
-
-                $dados = implode(",", $validar);
-                return jsonResponse(['message'=>"Erro, Falta o campo: ".$dados], 404);
-            }
-            $result = RoomModel::create($conn, $data);
-            if ($result){
-                return jsonResponse(['message'=>"Quarto criado com sucesso"]);
-            }else{
-                return jsonResponse(['message'=>"Erro ao criar o quarto"], 400);
+        foreach ($camposOb as $campo) {
+            if (!isset($data[$campo]) || empty($data[$campo])) {
+                $erros[] = $campo;
             }
         }
+
+        if (!empty($erros)) {
+            return jsonResponse(['message' => 'Erro, falta o comando: ' . implode(',', $erros)], 404);
+        }
+        
+        $result = RoomModel::create($conn, $data);
+        if ($result){
+            return jsonResponse(['message'=>"Quarto criado com sucesso"]);
+        }else{
+            return jsonResponse(['message'=>"Erro ao criar o quarto"], 400);
+        }
+    }
 
     public static function getAll($conn){
         $roomList = RoomModel::getAll($conn);

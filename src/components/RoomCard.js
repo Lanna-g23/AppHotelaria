@@ -1,8 +1,8 @@
 export default function RoomCard(index) {
-    const containerCard = document.createElement('div'); 
-    containerCard.className = "cardContainer";
-    containerCard.innerHTML = 
-    `
+  const containerCard = document.createElement('div'); 
+  containerCard.className = "cardContainer";
+  containerCard.innerHTML = 
+  `
 <div class="card" style="width: 18rem;">
     <div id="carouselExampleIndicators-${index}" class="carousel slide">
      

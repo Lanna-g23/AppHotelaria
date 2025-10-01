@@ -8,7 +8,7 @@ const routes = {
     "/login": renderLoginPage,
     "/register": renderRegisterPage,
     "/home": renderHomePage,
-    "/carrinho": renderCartPage
+    "/cart": renderCartPage
     //Novas páginas aqui adicionadas conforme desenvolvidas
 };
 

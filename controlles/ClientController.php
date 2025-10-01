@@ -42,12 +42,9 @@
             }
         }
         public static function loginClient($conn, $data) {
-
-      
         $data['email'] = trim($data['email']);
         $data['password'] = trim($data['password']);
-
- 
+        
         if (empty($data['email']) || empty($data['password'])) {
             return jsonResponse([
                 "status" => "erro",

@@ -19,9 +19,9 @@ elseif ($_SERVER['REQUEST_METHOD'] === "POST") {
 
 else {
     jsonResponse([
-        'status' => 'erro',
+        'status' => 'Erro',
         'message' => 'Metodo não permitido',
-    ], 400);
+    ], 401);
 }
 
 ?>
