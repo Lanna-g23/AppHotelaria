@@ -32,7 +32,7 @@ if($route != "api"){
 }
 //back-end para rotas de requição (endpoint)
 elseif ($route === "api"){
-    if (in_array($subRoute, ["login", "rooms", "cliente", "adicional", "reserva", "pedido", "clientLogin"])){
+    if (in_array($subRoute, ["login", "rooms", "cliente", "adicional", "reserva", "pedido", "disponiveis", "clientLogin"])){
         require "routes/${subRoute}.php";
     }else{
 

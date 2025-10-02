@@ -7,6 +7,7 @@
     require_once __DIR__ .'/models/RoomModel.php';
     require_once __DIR__ .'/controlles/ClientController.php';
     require_once __DIR__ .'/controlles/AdicionalController.php';
+    require_once __DIR__ .'/controlles/ReservationController.php';
 /*
     $data = [
         "nome" => "Quarto Supremo",
@@ -17,12 +18,12 @@
         "disponivel" => 1
     ];*/   
 
-   // $data = [
-    //    "nome" => "Lua",
-    //    "preco" => 200,
-    //];
+   $data = [
+        "nome" => "Lua",
+        "preco" => 200,
+    ];
 
-    RoomController::getAll($conn);
+   // RoomController::getAll($conn);
 
    // AuthControlle::login($conn, $data);
 

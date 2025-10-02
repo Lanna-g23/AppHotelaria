@@ -20,6 +20,7 @@ export default function renderLoginPage() {
     fot.appendChild(footer);
 
     const formulario = Form();
+    
     const contentForm = formulario.querySelector('form');
 
     const inputEmail = contentForm.querySelector('input[type="email"]');
@@ -33,7 +34,6 @@ export default function renderLoginPage() {
         
         const email = inputEmail.value.trim();
         const senha = inputSenha.value.trim();
-
         try{
             const result = await loginRequest(email, senha);
             if (result.ok){

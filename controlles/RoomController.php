@@ -1,28 +1,24 @@
 <?php
 require_once __DIR__ . "/../models/RoomModel.php";
-require_once "ValidatorController.php";
+require_once __DIR__ . "/ValidatorController.php";
 
 class RoomController{
+   public static $labels = ["nome", "numero", "qtd_casal", "qtd_solteiro", "preco", "disponivel"];
+
     public static function create($conn, $data){
 
-        $camposObrigatorios = ["nome", "numero", "qtd_cama_casal", "qtd_cama_solteiro", "preco", "disponivel"];
-        $erros = [];
+        $validar = ValidatorController::validate_data($data, self::$labels);
 
-        foreach ($camposOb as $campo) {
-            if (!isset($data[$campo]) || empty($data[$campo])) {
-                $erros[] = $campo;
-            }
-        }
-
-        if (!empty($erros)) {
-            return jsonResponse(['message' => 'Erro, falta o comando: ' . implode(',', $erros)], 404);
+        if( !empty($validar) ){
+            $dados = implode(", ", $validar);
+            return jsonResponse(['message'=> "Erro, Falta o campo: ".$dados], 404);
         }
         
         $result = RoomModel::create($conn, $data);
         if ($result){
             return jsonResponse(['message'=>"Quarto criado com sucesso"]);
         }else{
-            return jsonResponse(['message'=>"Erro ao criar o quarto"], 400);
+            return jsonResponse(['message'=>"Erro ao criar o quarto"], 404);
         }
     }
 
@@ -41,10 +37,7 @@ class RoomController{
     }
 
      public static function delete($conn, $id){
-        if( empty($id) ){
-            return jsonResponse(['message'=>"Erro, Falta o campo: id"], 406);
-        }
-
+        
         $result = RoomModel::delete($conn, $id);
         if ($result){
             return jsonResponse(['message'=>"Quarto excluido com sucesso"]);
@@ -67,7 +60,7 @@ class RoomController{
         if($result){
             return jsonResponse(['Quartos'=> $result]);
         }else{
-            return jsonResponse(['message'=> 'asdasdasd'], 401);
+            return jsonResponse(['message'=> 'erro'], 401);
         }
     }
 

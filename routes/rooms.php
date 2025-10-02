@@ -2,7 +2,7 @@
 require_once __DIR__ . "/../controlles/RoomController.php";
 
 if($_SERVER['REQUEST_METHOD'] === "GET" ){
-    $data = json_decode(file_get_contents('php://input'), true);
+   // $data = json_decode(file_get_contents('php://input'), true);
     $id = $segments[2] ?? null;
 
     if (isset($id)){
@@ -10,9 +10,10 @@ if($_SERVER['REQUEST_METHOD'] === "GET" ){
             RoomController::getById($conn, $id);
         }else{
             //pode dar error depois
-            $inicio = isset($_GET['inicio']) ? $_GET['inicio'] : null;
-            $fim = isset($_GET['fim']) ? $_GET['fim'] : null;
-            $qtd = isset($_GET['qtd']) ? $_GET['qtd'] : null;
+             $data = [
+                "data_inicio"=>isset($_GET['inicio']) ? $_GET['inicio'] : null,
+                "data_fim"=>isset($_GET['fim']) ? $_GET['fim'] : null,
+                "qtd"=>isset($_GET['qtd']) ? $_GET['qtd'] : null];
             RoomController::get_available($conn, ["inicio"=>$inicio, "fim"=>$fim, "qtd"=>$qtd]); 
         }
     }else{

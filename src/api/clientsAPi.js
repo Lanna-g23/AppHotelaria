@@ -11,7 +11,6 @@ export async function createRequest(nome, cpf, telefone, email, senha ){
         headers:{
             "Accept": "application/json",
             "Content-Type": "application/json"
-
         },
 
         boby: JSON.stringify(dados),

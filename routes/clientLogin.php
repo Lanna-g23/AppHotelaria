@@ -1,12 +1,12 @@
 <?php
-require_once __DIR__ . "/../controlles/ClientController.php";
+require_once __DIR__ . "./../controlles/AuthController.php";
 
 if($_SERVER['REQUEST_METHOD'] === "POST" ){
     $data = json_decode(file_get_contents('php://input'), true);
-    ClientController::loginClient($conn, $data);
+    AuthController::loginClient($conn, $data);
 }else{
     jsonResponse([
-        'status'=>'erro',
+        'status'=>'Erro',
         'message'=>'Método não permitido'
     ], 405);
 }

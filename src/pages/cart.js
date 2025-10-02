@@ -1,6 +1,6 @@
-import barraCategoria from "../components/Categoria.js";
+import Categoria from "../components/Categoria.js";
 import Navbar from "../components/Navbar.js";
-import quartosInformacoes from "../components/RoomsInfo.js";
+import Informacoes from "../components/RoomsInfo.js";
 
 export default function renderCartPage(){
 
@@ -16,11 +16,11 @@ export default function renderCartPage(){
     nav.appendChild(navbar);
 
     
-    const cart = barraCategoria();
+    const cart = Categoria();
     divRoot.appendChild(cart);
 
     for(var i=0; i<2; i++){
-        const informacoes = quartosInformacoes();
+        const informacoes = Informacoes();
         divRoot.appendChild(informacoes);
     };
 
