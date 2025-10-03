@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar.js";
 import Footer from "../components/Footer.js";
 import RoomCard from "../components/RoomCard.js";
 import DateSelector from "../components/DateSelector.js";
+import { listAvailaRoomsRequest } from "../api/roomsAPI.js";
 
 export default function renderHomePage(){
 
@@ -22,8 +23,23 @@ export default function renderHomePage(){
     const dateSelector = DateSelector();
     divRoot.appendChild(dateSelector);
 
+    const btnSearchRoom = dateSelector.querySelector('button');
+    btnSearchRoom.addEventListener("click", async (e) =>{
+        e.preventDefault();
+
+        const inicio = "2025-09-15"; // estou setando só para testar pq ainda vamosv pegar valor diretamente do input
+        const fim = "2025-09-24";
+        const qtd = 2;
+
+        try{
+            const quartos = listAvailaRoomsRequest({inicio, fim, qtd});
+            
+        }catch(error){
+            console.log(error);
+        }
+    });
+
     const cardsGroup = document.createElement('div');
-    cardsGroup.innerHTML = '';
     cardsGroup.className = "cards"
 
     for(var i = 0; i < 3; i++){

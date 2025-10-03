@@ -6,9 +6,11 @@
 
     class ClientController{
         public static function create($conn, $data){
+            ValidatorController::validate_data($data, ["email, senha", "cpf", "telefone"]);
+            
             $login = [
-            "email" => $data['email'],
-            "senha" => $data['password']];
+                "email" => $data['email'],
+                "senha" => $data['password']];
 
             $data['password'] = PasswordController::generateHash($data['password']);
             $result = ClientModel::create($conn, $data);

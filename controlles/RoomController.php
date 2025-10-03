@@ -3,17 +3,10 @@ require_once __DIR__ . "/../models/RoomModel.php";
 require_once __DIR__ . "/ValidatorController.php";
 
 class RoomController{
-   public static $labels = ["nome", "numero", "qtd_casal", "qtd_solteiro", "preco", "disponivel"];
-
     public static function create($conn, $data){
 
-        $validar = ValidatorController::validate_data($data, self::$labels);
+        ValidatorController::validate_data($data, ["nome", "numero", "qtd_casal", "qtd_solteiro", "preco", "disponivel"]);
 
-        if( !empty($validar) ){
-            $dados = implode(", ", $validar);
-            return jsonResponse(['message'=> "Erro, Falta o campo: ".$dados], 404);
-        }
-        
         $result = RoomModel::create($conn, $data);
         if ($result){
             return jsonResponse(['message'=>"Quarto criado com sucesso"]);
@@ -28,10 +21,6 @@ class RoomController{
     }
 
       public static function getById($conn, $id){
-        if( empty($id) ){
-            return jsonResponse(['message'=>"Erro, Falta o campo: id"], 405);
-        }
-
         $buscarId = RoomModel::getById($conn, $id);
         return jsonResponse($buscarId);
     }
@@ -47,6 +36,7 @@ class RoomController{
     }
 
     public static function update($conn, $id, $data){
+        ValidatorController::validate_data($data, ["nome", "numero", "qtd_casal", "qtd_solteiro", "preco", "disponivel"]);
         $result = RoomModel::update($conn, $id, $data);
         if($result){
             return jsonResponse(['message'=> 'Quarto atualizado com sucesso']);
@@ -56,6 +46,11 @@ class RoomController{
     }
 
     public static function get_available($conn, $data){
+        ValidatorController::validate_data($data, ["inicio", "fim", "qtd"]);
+        
+        $data["inicio"] = ValidatorController::fix_hours($data["inicio"], 14);
+        $data["fim"] = ValidatorController::fix_hours($data["fim"], 12);
+        
         $result = RoomModel::get_available($conn, $data);
         if($result){
             return jsonResponse(['Quartos'=> $result]);

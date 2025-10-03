@@ -1,4 +1,4 @@
-import { loginRequest, saveToken } from "../api/authAPI.js";
+import { loginRequest, saveToken } from "../api/AuthAPI.js";
 import Form from "../components/Form.js";
 import Navbar from "../components/Navbar.js";
 import Footer from "../components/Footer.js";

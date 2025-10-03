@@ -10,15 +10,12 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
     } else {
         return jsonResponse(['message'=> 'Deu merda'], 400);
     }
-}
-
-elseif ($_SERVER['REQUEST_METHOD'] === "POST") {
+}elseif ($_SERVER['REQUEST_METHOD'] === "POST") {
     $data = json_decode(file_get_contents('php://input'), true);
     $id = $data['id'] ?? null;
     ReservationController::create($conn, $data);
-}
 
-else {
+}else {
     jsonResponse([
         'status' => 'Erro',
         'message' => 'Metodo não permitido',

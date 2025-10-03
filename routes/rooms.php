@@ -8,16 +8,19 @@ if($_SERVER['REQUEST_METHOD'] === "GET" ){
     if (isset($id)){
         if(is_numeric($id)){
             RoomController::getById($conn, $id);
-        }else{
-            //pode dar error depois
-             $data = [
-                "data_inicio"=>isset($_GET['inicio']) ? $_GET['inicio'] : null,
-                "data_fim"=>isset($_GET['fim']) ? $_GET['fim'] : null,
-                "qtd"=>isset($_GET['qtd']) ? $_GET['qtd'] : null];
-            RoomController::get_available($conn, ["inicio"=>$inicio, "fim"=>$fim, "qtd"=>$qtd]); 
+        }elseif($id === "disponiveis"){
+            $data = [
+                "inicio" => isset($_GET['inicio']) ? $_GET['inicio'] : null,
+                "fim" => isset($_GET['fim']) ? $_GET['fim'] : null,
+                "qtd" => isset($_GET['qtd']) ? $_GET['qtd'] : null];
+
+                RoomController::get_available($conn, $data); 
         }
     }else{
-        RoomController::getAll($conn);
+//RoomController::getAll($conn);
+        jsonResponse(['message'=>'Essa Rota não existe'], 400);
+    }else{
+        RoomController::getall($conn);
     }
 }
 

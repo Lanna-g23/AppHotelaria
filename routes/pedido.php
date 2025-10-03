@@ -1,23 +1,20 @@
 <?php
-require_once __DIR__ . "/../controlles/PedidoController.php";
+require_once __DIR__ . "/../controlles/OrderController.php";
 
 if ($_SERVER['REQUEST_METHOD'] === "GET") {
     $data = json_decode(file_get_contents('php://input'), true);
     $id = $data["id"] ?? null;
     
     if (isset($id)) {
-        PedidosController::getById($conn, $id);
+        OrderController::getById($conn, $id);
     } else {
-        PedidosController::getAll($conn);
+        OrderController::getAll($conn);
     }
-}
-
-elseif ($_SERVER['REQUEST_METHOD'] === "POST") {
+}elseif ($_SERVER['REQUEST_METHOD'] === "POST") {
     $data = json_decode(file_get_contents('php://input'), true);
-    PedidosController::create($conn, $data);
-}
-
-else {
+    OrderController::create($conn, $data);
+    
+}else {
     jsonResponse([
         'status' => 'Erro',
         'message' => 'Metodo não permitido',

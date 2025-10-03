@@ -16,7 +16,13 @@ if($_SERVER['REQUEST_METHOD'] === "POST" ){
     }
 
     AuthController::login($conn, $data);
-}else{
+}elseif($_SERVER['REQUEST_METHOD'] === "PUT" ){
+    validateTokenAPI();
+    jsonResponse(['message'=> "deu carto"],200);
+
+}
+
+else{
     jsonResponse([
         'status'=>'Erro',
         'message'=>'Método não permitido'
