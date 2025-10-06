@@ -15,10 +15,10 @@ if($_SERVER['REQUEST_METHOD'] === "GET" ){
                 "qtd" => isset($_GET['qtd']) ? $_GET['qtd'] : null];
 
                 RoomController::get_available($conn, $data); 
-        }
     }else{
 //RoomController::getAll($conn);
         jsonResponse(['message'=>'Essa Rota não existe'], 400);
+    }
     }else{
         RoomController::getall($conn);
     }
@@ -51,5 +51,6 @@ elseif($_SERVER['REQUEST_METHOD'] === "DELETE" ){
         'message'=>'Método não permitido'
     ], 405);
 }
+
 
 ?>

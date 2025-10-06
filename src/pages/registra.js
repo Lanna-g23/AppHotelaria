@@ -5,72 +5,73 @@ import {createRequest} from "../api/clientsAPI.js"
 
 export default function renderRegisterPage() {
     
+    //Navbar
     const nav = document.getElementById('navbar');
     nav.innerHTML = '';
     const navbar = Navbar();
     nav.appendChild(navbar);
 
+    //Footer
     const fot = document.getElementById('footer');
     fot.innerHTML = '';
     const footer = Footer();
     fot.appendChild(footer);
 
-    const formulario = Form();
-    const titulo = formulario.querySelector('h1');
+    //Form
+    const form = Form();
+    const titulo = form.querySelector('h1');
     titulo.textContent = 'Cadastre-se';
 
     //Seleciono o elemento form que está presente em ./components/Form.js
-    const Form = formulario.querySelector('form');
+    const contentForm = form.querySelector('form');
 
     //Criar o input para nome e adicionar em contentForm
-    const nome = document.createElement('input');
-    nome.type = 'text';
-    nome.className = 'inputs';
-    nome.placeholder = "Digite seu nome";
+    const innome = document.createElement('input');
+    innome.type = 'text';
+    innome.className = 'inputs';
+    innome.placeholder = "Digite seu nome";
 
-    const Cpf = document.createElement('input');
-    Cpf.type = 'text';
-    Cpf.className = 'inputs';
-    Cpf.placeholder = 'Digite seu CPF';
+    const inCpf = document.createElement('input');
+    inCpf.type = 'text';
+    inCpf.className = 'inputs';
+    inCpf.placeholder = 'Digite seu CPF';
 
-    const Telefone = document.createElement('input');
-    Telefone.type = 'text';
-    Telefone.className = 'inputs';
-    Telefone.placeholder = 'Digite seu Telefone';
+    const inTelefone = document.createElement('input');
+    inTelefone.type = 'text';
+    inTelefone.className = 'inputs';
+    inTelefone.placeholder = 'Digite seu Telefone';
 
-    const Email = formulario.querySelector('input[type="email"]');
+    const inEmail = form.querySelector('input[type="email"]');
     
-    const Senha = formulario.querySelector('input[type="password"]');
+    const inSenha = form.querySelector('input[type="password"]');
      
+    contentForm.insertBefore(innome, contentForm.children[0]);
+    contentForm.insertBefore(inCpf, contentForm.children[1]);
+    contentForm.insertBefore(inTelefone, contentForm.children[2]);
+    
     const confSenha = document.createElement('input');
     confSenha.type = 'password';
     confSenha.placeholder = 'Confirme sua senha';
     confSenha.className = 'inputs';
-   
-    Form.insertBefore(nome, Form.children[0]);
-    Form.insertBefore(Cpf, Form.children[1]);
-    Form.insertBefore(Telefone, Form.children[2]);
-    Form.insertBefore(confSenha, Form.children[5]);
-    
+    contentForm.insertBefore(confSenha, contentForm.children[5]);
     /*Adicionar confSenha como "child" de form que já contém
         4 elementos: input nome[0], input email[1], input password[2],
         button btn[3], ao adicionar conftSenha antes de btn[3], portanto
         utilizar insertBefore() e identificar a posição de btn[3] como uma
         "child" do elemento pai form
     */
-    Form.insertBefore(confSenha, Form.children[3]);
 
-    const btnRegister = formulario.querySelector('button');
+    const btnRegister = form.querySelector('button');
     btnRegister.textContent = 'Criar conta';
 
-    Form.addEventListener("submit", async (event) =>{
+    contentForm.addEventListener("submit", async (event) =>{
         event.preventDefault();
 
-        const nome = nome.value.trim();
-        const cpf = Cpf.value.trim();
-        const telefone = Telefone.value.trim();
-        const email = Email.value.trim();
-        const senha = Senha.value.trim();
+        const nome = innome.value.trim();
+        const cpf = inCpf.value.trim();
+        const telefone = inTelefone.value.trim();
+        const email = inEmail.value.trim();
+        const senha = inSenha.value.trim();
       
         try{
             const result = createRequest(nome, cpf, telefone, email, senha);

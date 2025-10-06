@@ -37,11 +37,11 @@ export default function renderLoginPage() {
         try{
             const result = await loginRequest(email, senha);
             if (result.ok){
-                console.log("login realizado com sucesso", result);
+                console.log("Login realizado com sucesso", result);
                 saveToken(result.token);
                 window.location.pathname = "estudo_php/home";
             }else{
-                console.log('login invalido!');
+                console.log('Login invalido!');
             }
         }catch{
             console.log("erro inesperado!");

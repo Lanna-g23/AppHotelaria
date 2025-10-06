@@ -21,10 +21,10 @@ function getPath(){
     //return url && url.startsWith("/") ? url : "/home";
 
 
-    const patParts = location.pathname.split('/').filter(Boolean);
-    patParts.shift();
+    const pathParts = location.pathname.split('/').filter(Boolean);
+    pathParts.shift();
 
-    const path = '/' + patParts.join('/');
+    const path = '/' + pathParts.join('/');
     return path;
 }
 

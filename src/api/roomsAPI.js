@@ -1,15 +1,15 @@
 /* getToken() é uma função que retorna o valor do token armazenado no localStorage(), para que o usuario permaneça logado mesmo que mude 
 de pagina e nao tenha "re-logar" */
 
-import { getToken } from "./AuthAPI.js";
+//import { getToken } from "./AuthAPI.js";
 
 // Listar todos os quartos independente de filtro 
 export async function listAvailaRoomsRequest({inicio, fim, qtd}){
     const params = new URLSearchParams();
 
-    if(inicio){ params.set("inicio", inicio);}
-    if(fim){ params.set("fim", fim);}
-    if(qtd !== null && qtd !== ""){ params.set("qtd", String(qtd));}
+    if(inicio){params.set("inicio", inicio);}
+    if(fim){params.set("fim", fim);}
+    if(qtd !== null && qtd !== ""){params.set("qtd", String(qtd));}
 
     const url = `api/rooms/disponiveis?${params.toString()}`;
     const response = await fetch(url, {
@@ -28,6 +28,7 @@ export async function listAvailaRoomsRequest({inicio, fim, qtd}){
     este arquivo conversa com a Controller que, por sua vez conversa com a Model (onde está a query SELECT)
          "Content-Type": "application/json"
        },*/ 
+       
     let data = null;
     try{
         data = await response.json();
@@ -40,7 +41,7 @@ export async function listAvailaRoomsRequest({inicio, fim, qtd}){
         throw new Error(msg);
     }
 
-    const quartos = Array.isArray(data?.Quartos) ? data.Quartos : [];
-    console.log(quartos);
-    return quartos;
+    const rooms = Array.isArray(data?.Quartos) ? data.Quartos : [];
+    console.log(rooms);
+    return rooms;
 }

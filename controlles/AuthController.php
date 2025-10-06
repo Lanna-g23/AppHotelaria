@@ -9,7 +9,7 @@
         public static function login($conn, $data){
             ValidatorController::validate_data($data, ["email, senha"]);
             $data['email'] = trim($data['email']);
-            $data['password'] = trim($data['password']);
+            $data['senha'] = trim($data['password']);
 
             //confimar se tem algum vazio
             if(empty($data['email']) || empty($data['password'])){
@@ -26,7 +26,7 @@
             }else{
                 return jsonResponse([   
                     "reposta" => "Erro",
-                    "message" => "Credenciais invalidas !!"], 401);
+                    "message" => "credenciais invalidas !!"], 401);
                 }
             
             }

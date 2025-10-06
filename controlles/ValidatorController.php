@@ -9,7 +9,11 @@ class ValidatorController{
                 $pendets[] = $lbl;
             }
         }
-        return $pendets;
+        if(!empty($pendets) ){
+            $pendets = implode(", ", $pendets);
+            jsonResponse(['message'=> "Erro, Falta o campo: ".$pendets], 400);
+            exit;
+        }
     }
      public static function fix_hours($data, $horas){
         $dateEHora = new DateTime($data);

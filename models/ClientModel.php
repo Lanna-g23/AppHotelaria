@@ -20,7 +20,7 @@ class ClientModel{
             $result = $conn->query($sql);
             return $result->fetch_all(MYSQLI_ASSOC);
     }
-    public static function validationUserLogin($conn, $email, $password) {
+    public static function validationClient($conn, $email, $password) {
         $sql = "SELECT u.id, u.email, u.senha, u.nome, roles.nome FROM clientes AS u
         JOIN roles ON roles.id = u.cargo_id WHERE u.email = ?;";
         $stmt = $conn->prepare($sql);

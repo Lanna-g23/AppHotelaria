@@ -32,7 +32,7 @@ export default function renderHomePage(){
         const qtd = 2;
 
         try{
-            const quartos = listAvailaRoomsRequest({inicio, fim, qtd});
+            const rooms = listAvailaRoomsRequest({inicio, fim, qtd});
             
         }catch(error){
             console.log(error);

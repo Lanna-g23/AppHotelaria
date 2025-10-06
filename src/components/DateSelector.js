@@ -14,12 +14,13 @@ const guestAmount = document.createElement('select');
 guestAmount.className = 'card p-3 shadow-lg inputDate';
 guestAmount.innerHTML =
 `
-<option value="">Quantas Pessoas?</option>
-<option value="1">1 Pessoa</option>
-<option value="2">2 Pessoas</option>
-<option value="3">3 Pessoas</option>
-<option value="4">4 Pessoas</option>
-<option value="5">5 ou mais Pessoas</option>`;
+    <option value="">Quantas Pessoas?</option>
+    <option value="1">1 Pessoa</option>
+    <option value="2">2 Pessoas</option>
+    <option value="3">3 Pessoas</option>
+    <option value="4">4 Pessoas</option>
+    <option value="5">5 ou mais Pessoas</option>
+    `;
 const btnSearchRoom = document.createElement('button');
 btnSearchRoom.type = 'submit';
 btnSearchRoom.textContent = 'Pesquisar';
