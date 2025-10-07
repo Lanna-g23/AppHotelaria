@@ -23,29 +23,57 @@ export default function renderHomePage(){
     const dateSelector = DateSelector();
     divRoot.appendChild(dateSelector);
 
+    const [dateCheckIn, dateCheckOut] = dateSelector.querySelectorAll('input[type="date]');
+    const guestAmount = dateSelector.querySelector('select');
     const btnSearchRoom = dateSelector.querySelector('button');
+
     btnSearchRoom.addEventListener("click", async (e) =>{
         e.preventDefault();
 
-        const inicio = "2025-09-15"; // estou setando só para testar pq ainda vamosv pegar valor diretamente do input
-        const fim = "2025-09-24";
-        const qtd = 2;
+        const inicio = (dateCheckIn?.value || "").trim();
+        const fim = (dateCheckOut?.value || "").trim();
+        const qtd = parseInt(guestAmount?.value || "0", 10);
+
+        if (!inicio || !fim || Number.isNaN(qtd)|| qtd <= 0){
+            console.log("Preencha todos os campo!");
+            return
+        }
+
+        const dtInicio = new Date(inicio);
+        const dtFim = new Date(fim);
+
+        if (isNaN(dtInicio) || isNaN(dtFim) || dtInicio >= dtFim) {
+            console.log("A data de check-out deve ser posterior ao check-in");
+            return
+        }
+
 
         try{
-            const rooms = listAvailaRoomsRequest({inicio, fim, qtd});
+            const result = listAvailaRoomsRequest({inicio, fim, qtd});
             
+        if(!result.length){
+            console.log("Nenhum quarto disponível para esse pedído")
+            return;
+        }
+        cardsGroup.innerHTML ='';
+        result.forEach((itemCard, i) => {
+            cardsGroup.appendChild(RoomCard(itemCard, i));
+        });
+
         }catch(error){
             console.log(error);
         }
+        
     });
 
     const cardsGroup = document.createElement('div');
-    cardsGroup.className = "cards"
+    cardsGroup.className = "cards";
+    cardsGroup.id = "cards-result";
 
-    for(var i = 0; i < 3; i++){
-        const card = RoomCard(i);
-        cardsGroup.appendChild(card);
-    }
+    //for(var i = 0; i < 3; i++){
+        //const card = RoomCard(i);
+       // cardsGroup.appendChild(card);
+   //}
     
     divRoot.appendChild(cardsGroup);
 

@@ -1,4 +1,18 @@
-export default function RoomCard(index) {
+export default function RoomCard(itemCard, index = 0) {
+  const{
+    nome,
+    numero,
+    qtd_cama_solteiro,
+    qtd_cama_casal,
+    preco
+  } = itemCard || {};
+
+  const title = nome;
+  const camas = [
+    (qtd_cama_solteiro != null ? `${qtd_cama_solteiro} cama(s) de solteiro`: null),
+    (qtd_cama_casal != null ? `${qtd_cama_casal} cama(s) de casal`: null), 
+].filter(Boolean).join (' - ');
+  
   const containerCard = document.createElement('div'); 
   containerCard.className = "cardContainer";
   containerCard.innerHTML = 
@@ -36,8 +50,11 @@ export default function RoomCard(index) {
     </div>
  
     <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+      <h5 class="card-title">${title}</h5>
+      <ul class=list-unstyled md-2">
+      ${camas? `<li>${camas}` : ""}
+      ${preco != null ? `<li>Preco: R$ ${Number(preco).toFixed(2)}</li>` : ""}
+      </ul>
       <a href="#" class="btn btn-primary">Reserva</a>
     </div>
   </div>

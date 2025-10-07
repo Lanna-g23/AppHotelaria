@@ -16,7 +16,6 @@ export async function listAvailaRoomsRequest({inicio, fim, qtd}){
         method: "GET",
         headers: {
             "Accept": "application/json",
-            "Content-Type": "application/json"
         },
         credentials: "same-origin",     
     });
