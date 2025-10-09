@@ -2,12 +2,13 @@
     require_once __DIR__ . "/../models/UserModel.php";
     require_once __DIR__ . "/../helpers/token_jwt.php";
     require_once __DIR__ . "/../models/ClientModel.php";
-    require_once __DIR__ . "/ValidatorController.php";
-    require_once "PasswordController.php";
+    require_once __DIR__ . "/../controlles/ValidatorController.php";
+    require_once "/../controlles/PasswordController.php";
    
     class AuthControlle{
         public static function login($conn, $data){
             ValidatorController::validate_data($data, ["email, senha"]);
+            
             $data['email'] = trim($data['email']);
             $data['senha'] = trim($data['password']);
 
@@ -33,6 +34,9 @@
     public static function loginClient($conn, $data){
       ValidatorController::validate_data($data, ["email, password"]);
         // Confirmar se tem algum campo vazio
+
+        $data['email'] = trim($data['email']);
+        $data['senha'] = trim($data['password']);
 
         if (empty($data['email']) || empty($data['password'])) {
             return jsonResponse(

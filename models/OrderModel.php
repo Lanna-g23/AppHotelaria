@@ -1,5 +1,6 @@
 <?php 
 require_once __DIR__ ."/../controlles/PasswordController.php";
+require_once __DIR__ ."models/RoomModel.php";
 
 class OrderModel{
     public static function create($conn, $data) {
@@ -10,8 +11,12 @@ class OrderModel{
             $data["cliente_id"],
             $data["pagamento"]
         );
-        return $stmt->execute();
+        $resultado = $stmt->execute();
+        if ($resultado) {
+            return $conn->insert_id;
     }
+    return false;
+}
 
     public static function getAll($conn) {
         $sql = "SELECT * FROM pedidos";
@@ -25,6 +30,54 @@ class OrderModel{
         $stmt->bind_param("i", $id);
         $stmt->execute();
         return $stmt->get_result()->fetch_assoc();
+    }
+    public static function delete($conn, $id){
+        $sql = "DELETE FROM pedidos WHERE id = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $id);
+        return $stmt->execute();
+    }
+    public static function update($conn, $data) {
+    }
+
+    public static function createOrder($conn, $data) {
+
+        $usuario_id = $data['usuario_id'];
+        $cliente_id = $data['cliente_id'];
+        $pagamento = $data['pagamento'];
+        $reservas = $data['reservas'];
+        $reservou = false;
+
+        $conn->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
+
+        try {
+            $order_id = self::create($conn, [
+                "usuario_id" => $usuario_id,
+                "cliente_id" => $cliente_id,
+                "pagamento" => $pagamento,
+            ]);
+            if (!$order_id){
+                throw new RuntimeException("Erro ao criar o pedido");
+            }
+
+            foreach ($data['quartos'] as $quartos) {
+                $id = $quartos["id"];
+                $inicio = $quartos["inicio"];
+                $fim = $quartos["fim"];
+
+                if (!RoomModel::lockById($conn, $id)){
+                    $reservas[] = "Quarto {$id} indisponivel!";
+                    continue;
+                }
+
+            }
+
+        } catch (\Throwable $th) {
+            try {
+                $conn->rollback();
+            } catch (\Throwable $th2) {}
+            throw $th;
+        }
     }
 }
 ?>

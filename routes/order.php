@@ -9,11 +9,13 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
     } else {
         OrderController::getAll($conn);
     }
-}elseif($_SERVER['REQUEST_METHOD'] === "POST") {
+}
+
+elseif($_SERVER['REQUEST_METHOD'] === "POST") {
     $opcao = $segments[2] ?? null;
     $data = json_decode(file_get_contents('php://input'), true);
 
-    if($opcao == "reservation") {
+    if($opcao == "reservation"){
         OrderController::createOrder($conn, $data);
     }else{
         OrderController::create($conn, $data);

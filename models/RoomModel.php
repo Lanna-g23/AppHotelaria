@@ -35,7 +35,6 @@ class RoomModel{
         $stmt->bind_param("i", $id);
         return $stmt->execute();
 }
-
 public static function update($conn, $id, $data){
         $sql = "UPDATE quartos SET nome = ?, numero = ?, qtd_cama_solteiro = ?, qtd_cama_casal = ?, preco = ?, disponivel = ? WHERE id = ?";
 
@@ -56,7 +55,7 @@ public static function update($conn, $id, $data){
         $sql = "SELECT *
         FROM quartos
         WHERE quartos.disponivel = 1
-        AND (quartos.qtd_cama_casal * 2 + quartos.qtd_cama_solteiro) >= ? AND NOT EXISTS ( SELECT 1 FROM reservas r WHERE r.quarto_id = q.id AND r.inicio < ? AND r.fim > ?)";
+        AND (quartos.qtd_cama_casal * 2 + quartos.qtd_cama_solteiro) >= ? AND NOT EXISTS ( SELECT 1 FROM reservas r WHERE r.quarto_id = quartos.id AND r.inicio < ? AND r.fim > ?)";
         
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("iss", 
@@ -68,6 +67,16 @@ public static function update($conn, $id, $data){
         return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     }
 
+    public static function lockById($conn, $id){
+        $sql = "SELECT id FROM quartos WHERE id = ? FOR UPDATE";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result && $result->num_rows > 0;
+        $stmt->close();
+        return $row;
+    }
 }
 
 ?>
