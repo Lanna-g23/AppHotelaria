@@ -4,6 +4,7 @@ import Footer from "../components/Footer.js";
 import RoomCard from "../components/RoomCard.js";
 import DateSelector from "../components/DateSelector.js";
 import { listAvailaRoomsRequest } from "../api/roomsAPI.js";
+import CardLounge from "../components/CardLounge.js";
 
 export default function renderHomePage(){
 
@@ -27,6 +28,13 @@ export default function renderHomePage(){
     const guestAmount = dateSelector.querySelector('select');
     const btnSearchRoom = dateSelector.querySelector('button');
 
+    const cardsGroup = document.createElement('div');
+    cardsGroup.className = "cards";
+    cardsGroup.id = "cards-result";
+
+    const cardLounge = CardLounge();
+    cardsGroup.appendChild(cardLounge);
+
     btnSearchRoom.addEventListener("click", async (e) =>{
         e.preventDefault();
 
@@ -47,7 +55,6 @@ export default function renderHomePage(){
             return
         }
 
-
         try{
             const result = listAvailaRoomsRequest({inicio, fim, qtd});
             
@@ -66,9 +73,6 @@ export default function renderHomePage(){
         
     });
 
-    const cardsGroup = document.createElement('div');
-    cardsGroup.className = "cards";
-    cardsGroup.id = "cards-result";
 
     //for(var i = 0; i < 3; i++){
         //const card = RoomCard(i);

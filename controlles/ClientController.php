@@ -4,6 +4,7 @@
     require_once "PasswordController.php";
     require_once __DIR__ . "/AuthController.php";
 
+
     class ClientController{
         public static function create($conn, $data){
             ValidatorController::validate_data($data, ["email, senha", "cpf", "telefone"]);

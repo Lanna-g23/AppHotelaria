@@ -3,9 +3,9 @@
     require_once __DIR__ . "/../helpers/token_jwt.php";
     require_once __DIR__ . "/../models/ClientModel.php";
     require_once __DIR__ . "/../controlles/ValidatorController.php";
-    require_once "/../controlles/PasswordController.php";
+    require_once __DIR__ . "/../controlles/PasswordController.php";
    
-    class AuthControlle{
+    class AuthController{
         public static function login($conn, $data){
             ValidatorController::validate_data($data, ["email, senha"]);
             
@@ -29,7 +29,7 @@
                     "reposta" => "Erro",
                     "message" => "credenciais invalidas !!"], 401);
                 }
-            
+
             }
     public static function loginClient($conn, $data){
       ValidatorController::validate_data($data, ["email, password"]);

@@ -37,13 +37,14 @@ export default function Navbar(){
             <a class="nav-link" href="login">Login</a>
             </li>
 
-
           </ul>
-          <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-            <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-        </div>
+
+          <div>
+            <a href="cart><img src="public/assets/img/cart-check-fill.svg"
+            width= "25" height= "25" alt="" </a>          
+          </div>
+
+          </div>
       </div>
   </nav>
   `;

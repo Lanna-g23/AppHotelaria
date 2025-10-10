@@ -69,10 +69,35 @@ class OrderModel{
                     $reservas[] = "Quarto {$id} indisponivel!";
                     continue;
                 }
+                //criar um metodo vna classe reseveModel para avaliar se o quarto esta disponivel no intervalo de data
+                //ReserveModel::isConflict
 
+                /*reservarResult = ReservaModel::create($conn, [
+                $data["pedido_id"],
+                $data["quarto_id"],
+                $data[null],
+                $data[$inicio],
+                $data[$fim])*/
+
+                $reservou = true;
+                $reservas[] = [
+                    "reserva_id"=> $conn->insert_id,
+                    "quarto_id"=> $id,
+                ];
             }
 
-        } catch (\Throwable $th) {
+            if ($reservou == true){
+                $conn->commit();
+                return[
+                    "pedido_id"=> $order_id,
+                    "reserva"=> $reservas,
+                    "messagem" => "reservas criado com sucesso!"
+                ];
+            }else{
+                throw new RuntimeException("Pedido nãqo realizado, nenhum quarto encontrado");
+            }
+
+        }catch(\Throwable $th) {
             try {
                 $conn->rollback();
             } catch (\Throwable $th2) {}
@@ -80,4 +105,6 @@ class OrderModel{
         }
     }
 }
+
+
 ?>

@@ -36,7 +36,7 @@ class RoomController{
     }
 
     public static function update($conn, $id, $data){
-        ValidatorController::validate_data($data, ["nome", "numero", "qtd_casal", "qtd_solteiro", "preco", "disponivel"]);
+        ValidatorController::validate_data($data, ["nome", "numero", "qtd_cama_solteiro", "qtd_cama_casal", "preco", "disponivel"]);
         $result = RoomModel::update($conn, $id, $data);
         if($result){
             return jsonResponse(['message'=> 'Quarto atualizado com sucesso']);
