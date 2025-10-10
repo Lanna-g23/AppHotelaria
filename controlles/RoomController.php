@@ -55,7 +55,7 @@ class RoomController{
         if($result){
             return jsonResponse(['Quartos'=> $result]);
         }else{
-            return jsonResponse(['message'=> 'erro'], 401);
+            return jsonResponse(['message'=> 'Erro'], 401);
         }
     }
 

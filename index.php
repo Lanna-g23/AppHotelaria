@@ -37,7 +37,7 @@ elseif ($route === "api"){
         require "routes/${subRoute}.php";
     }else{
 
-        return jsonResponse(['message'=>'Rota da API não encontrada'], 404);
+        return jsonResponse(['message'=>'Rota da API não encontrada'], 404); 
     }    
     exit;
     }else{

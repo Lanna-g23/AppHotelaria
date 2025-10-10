@@ -32,8 +32,21 @@ export default function renderHomePage(){
     cardsGroup.className = "cards";
     cardsGroup.id = "cards-result";
 
-    const cardLounge = CardLounge();
-    cardsGroup.appendChild(cardLounge);
+
+    const loungeItem =[
+        {path: "uma-imagem-que-captura-a-atmosfera-vibrante-da-area-de-assentos-ao-ar-livre-do-restaurante_862319-1127.jpg",
+        title: "Restaurante", text: "Nosso resyaurante é um espaço " +
+        "agradável e familiar!"},
+            {path: "7-spas-incriveis-em-sao-paulo-para-relaxar-dani-noce-destaque-960x625.jpg", title: "SPA", text: "Nosso SPA é ideal" +
+            "para momento de relaxamento!"},
+            {path: "MarshHouse-1.0.jpg", title: "Bar", text: "Nosso Bar é ideal" +
+            "para momento de relaxamento!"}
+    ];
+
+    for(let i = 0; i < loungeItem.length; i++){
+        const cardLounge = CardLounge(loungeItem[i], i);
+        cardsGroup.appendChild(cardLounge);
+    }
 
     btnSearchRoom.addEventListener("click", async (e) =>{
         e.preventDefault();
