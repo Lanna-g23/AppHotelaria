@@ -13,21 +13,20 @@ if($_SERVER['REQUEST_METHOD'] === "GET" ){
                 "inicio" => isset($_GET['inicio']) ? $_GET['inicio'] : null,
                 "fim" => isset($_GET['fim']) ? $_GET['fim'] : null,
                 "qtd" => isset($_GET['qtd']) ? $_GET['qtd'] : null];
-
+                
                 RoomController::get_available($conn, $data); 
-    }else{
-//RoomController::getAll($conn);
-        jsonResponse(['message'=>'Essa Rota não existe'], 400);
+            }else{
+                jsonResponse(['message'=>'Essa Rota não existe'], 400);
+            }
+        }else{
+            //RoomController::getall($conn);
+            jsonResponse(['message'=>'getall'], 400);
+        }
     }
-    }else{
-        RoomController::getall($conn);
-    }
-}
 
 elseif($_SERVER['REQUEST_METHOD'] === "POST" ){
     $data = json_decode(file_get_contents('php://input'), true);
     RoomController::create($conn, $data);
-
 }
 
 elseif($_SERVER['REQUEST_METHOD'] === "PUT" ){

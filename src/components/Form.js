@@ -10,6 +10,20 @@ export default function Form() {
     container.style.maxWidth = '400px';
     divRoot.appendChild(container);
 
+    const leftSide = document.createElement('div');
+    leftSide.className = 'left-side d-flex align-items-center justify-content-center';
+    leftSide.style.width = '57%';
+    leftSide.style.backgroundImage = 'url("public/assets/imgs/LeftSide.jpg")';
+    leftSide.style.backgroundSize = 'cover';
+    leftSide.style.backgroundPosition = 'center';
+    leftSide.style.borderRadius = '10px 0 0 10px';
+
+    // Lado direito (formulário)
+
+    const rightSide = document.createElement('div');
+    rightSide.className = 'right-side p-4 d-flex flex-column justify-content-center';
+    rightSide.style.width = '50%';
+
     const titulo = document.createElement('h1');
     titulo.textContent = 'Faça seu login';
     titulo.className = 'titulo';
@@ -39,8 +53,14 @@ export default function Form() {
    // cdt.
 
 
-    container.appendChild(titulo);
-    container.appendChild(formulario);
+    rightSide.appendChild(titulo);
+    rightSide.appendChild(formulario);
+
+
+    container.appendChild(leftSide);
+    container.appendChild(rightSide);
+
+    divRoot.appendChild(container);
 
     return divRoot;
 }

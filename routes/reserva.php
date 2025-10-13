@@ -8,9 +8,10 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
     if (isset($id)) {
         ReservationController::getByPe($conn, $id);
     } else {
-        return jsonResponse(['message'=> 'Deu merda'], 400);
+        return jsonResponse(['message'=> 'Deu erro'], 400);
     }
-}elseif ($_SERVER['REQUEST_METHOD'] === "POST") {
+}
+elseif ($_SERVER['REQUEST_METHOD'] === "POST") {
     $data = json_decode(file_get_contents('php://input'), true);
     $id = $data['id'] ?? null;
     ReservationController::create($conn, $data);

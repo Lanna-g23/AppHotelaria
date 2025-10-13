@@ -24,7 +24,13 @@ export default function renderHomePage(){
     const dateSelector = DateSelector();
     divRoot.appendChild(dateSelector);
 
+    /*Criar constante que armazene o valor da data de hoje*/
+
+    const dateToday = new Date().toISOString().split("T")[0];
     const [dateCheckIn, dateCheckOut] = dateSelector.querySelectorAll('input[type="date]');
+    dateCheckIn.min = dateToday;
+    dateCheckOut.min = dateToday;
+
     const guestAmount = dateSelector.querySelector('select');
     const btnSearchRoom = dateSelector.querySelector('button');
 
@@ -32,21 +38,42 @@ export default function renderHomePage(){
     cardsGroup.className = "cards";
     cardsGroup.id = "cards-result";
 
+    const cardsGroupInfra = document.createElement('div');
+    cardsGroupInfra.className = "cards";
+
+    const tituloInfra = document.createElement('h2');
+    tituloInfra.textContent = "Conheça nosso Hotel";
+    tituloInfra.style.textAlign = "center";
 
     const loungeItem =[
         {path: "uma-imagem-que-captura-a-atmosfera-vibrante-da-area-de-assentos-ao-ar-livre-do-restaurante_862319-1127.jpg",
-        title: "Restaurante", text: "Nosso resyaurante é um espaço " +
+        title: "Restaurante", text: "Nosso restaurante é um espaço " +
         "agradável e familiar!"},
-            {path: "7-spas-incriveis-em-sao-paulo-para-relaxar-dani-noce-destaque-960x625.jpg", title: "SPA", text: "Nosso SPA é ideal" +
+
+            {path: "7-spas-incriveis-em-sao-paulo-para-relaxar-dani-noce-destaque-960x625.jpg", title: "Spa", text: "Nosso spa é ideal " +
             "para momento de relaxamento!"},
+
             {path: "MarshHouse-1.0.jpg", title: "Bar", text: "Nosso Bar é ideal" +
-            "para momento de relaxamento!"}
+            " drinks sem metanol, confia!"}
     ];
 
     for(let i = 0; i < loungeItem.length; i++){
         const cardLounge = CardLounge(loungeItem[i], i);
-        cardsGroup.appendChild(cardLounge);
+        cardsGroupInfra.appendChild(cardLounge);
     }
+
+    function getMinDateCheckout(dateCheckIn){
+        const minDaily = new Date (dateCheckIn);
+        minDaily.setDate(minDaily.getDate() + 1);
+        return minDaily.toISOString().split('T')[0];
+    }
+    dateCheckIn.addEventListener('change', async (e) => {
+        
+
+
+    });
+
+
 
     btnSearchRoom.addEventListener("click", async (e) =>{
         e.preventDefault();
@@ -69,8 +96,7 @@ export default function renderHomePage(){
         }
 
         try{
-            const result = listAvailaRoomsRequest({inicio, fim, qtd});
-            
+            const result = await listAvailaRoomsRequest({inicio, fim, qtd});
         if(!result.length){
             console.log("Nenhum quarto disponível para esse pedído")
             return;
@@ -93,6 +119,8 @@ export default function renderHomePage(){
    //}
     
     divRoot.appendChild(cardsGroup);
+    divRoot.appendChild(tituloInfra);
+    divRoot.appendChild(cardsGroupInfra);
 
     //Footer
 

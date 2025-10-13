@@ -21,8 +21,13 @@ class ClientModel{
             return $result->fetch_all(MYSQLI_ASSOC);
     }
     public static function validateUserLogin($conn, $email, $password) {
-        $sql = "SELECT u.id, u.email, u.senha, u.nome, roles.nome FROM clientes AS u
-        JOIN roles ON roles.id = u.role_id WHERE u.email = ?;";
+        $sql = "SELECT clientes.id,
+        clientes.email,
+        clientes.senha,
+        clientes.nome,
+        roles.nome FROM clientes
+        AS clientes
+        JOIN roles ON roles.id = clientes.role_id WHERE clientes.email = ?;";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("s", $email);
         $stmt->execute();
@@ -66,8 +71,6 @@ class ClientModel{
 
         return $stmt->execute();
     }
-    
-    
 }
 
 ?>

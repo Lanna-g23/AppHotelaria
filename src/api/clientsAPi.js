@@ -1,11 +1,6 @@
 export async function createRequest(nome, cpf, telefone, email, senha ){
-    const dados = {
-        nome,
-        cpf,
-        telefone,
-        email,
-        senha
-    };
+    const dados = { nome, cpf, telefone, email, senha };
+    
     const response = await fetch("api/cliente", {
         method: "POST",
         headers:{
@@ -20,6 +15,7 @@ export async function createRequest(nome, cpf, telefone, email, senha ){
     let data = null;
     try{
         data = await response.json();
+        
     }catch{
         data = null;
     }

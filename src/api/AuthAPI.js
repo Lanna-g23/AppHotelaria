@@ -1,5 +1,5 @@
 export async function loginRequest(email, senha) {
-    const  dados = {email, password: senha};
+    const dados = {email, password: senha};
     const response = await fetch("api/login/cliente", {
         method: "POST",
         headers:{
@@ -21,7 +21,6 @@ export async function loginRequest(email, senha) {
 
     try{
         data = await response.json();
-        
     }catch{
         // Se Não for JSON válido, data permanece null
         data = null;
@@ -47,11 +46,11 @@ export async function loginRequest(email, senha) {
     }
 
     /*Recuperar a chave a cada página que o usuário navegar*/
-    export function getToken() {
+    export function getToken(){
         return localStorage.getItem("auth_token");
     }
 
     /*Função para remover a chave token quando o usuário deslogar*/
-    export function clearToken() {
+    export function clearToken(){
         localStorage.removeItem("auth_token");
     }

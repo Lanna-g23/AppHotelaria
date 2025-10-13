@@ -8,7 +8,9 @@ export async function listAvailaRoomsRequest({inicio, fim, qtd}){
     const params = new URLSearchParams();
 
     if(inicio){params.set("inicio", inicio);}
+
     if(fim){params.set("fim", fim);}
+
     if(qtd !== null && qtd !== ""){params.set("qtd", String(qtd));}
 
     const url = `api/rooms/disponiveis?${params.toString()}`;
@@ -16,6 +18,7 @@ export async function listAvailaRoomsRequest({inicio, fim, qtd}){
         method: "GET",
         headers: {
             "Accept": "application/json",
+            "Content-Type": "application/json"
         },
         credentials: "same-origin",     
     });
@@ -40,7 +43,7 @@ export async function listAvailaRoomsRequest({inicio, fim, qtd}){
         throw new Error(msg);
     }
 
-    const rooms = Array.isArray(data?.Quartos) ? data.Quartos : [];
+    const rooms = Array.isArray(data?.rooms) ? data.rooms : [];
     console.log(rooms);
     return rooms;
 }
