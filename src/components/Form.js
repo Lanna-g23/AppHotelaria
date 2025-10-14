@@ -12,7 +12,7 @@ export default function Form() {
 
     const leftSide = document.createElement('div');
     leftSide.className = 'left-side d-flex align-items-center justify-content-center';
-    leftSide.style.width = '57%';
+    // leftSide.style.width = '57%';
     leftSide.style.backgroundImage = 'url("public/assets/imgs/LeftSide.jpg")';
     leftSide.style.backgroundSize = 'cover';
     leftSide.style.backgroundPosition = 'center';
@@ -22,7 +22,7 @@ export default function Form() {
 
     const rightSide = document.createElement('div');
     rightSide.className = 'right-side p-4 d-flex flex-column justify-content-center';
-    rightSide.style.width = '50%';
+    // rightSide.style.width = '50%';
 
     const titulo = document.createElement('h1');
     titulo.textContent = 'Faça seu login';
@@ -33,11 +33,13 @@ export default function Form() {
 
     const email = document.createElement('input');
     email.type = 'email';
+    email.className = 'inputs';
     email.placeholder = "Digite seu e-mail";
     formulario.appendChild(email);
 
     const password = document.createElement('input');
     password.type ='password';
+    password.className = 'inputs';
     password.placeholder = "Digite sua senha";
     formulario.appendChild(password);
 

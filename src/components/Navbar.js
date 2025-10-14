@@ -40,14 +40,15 @@ export default function Navbar(){
           </ul>
 
           <div>
-            <a href="cart><img src="public/assets/img/cart-check-fill.svg"
+          <div class = "carts">
+            <a href="cart>
+            <img src="public/assets/img/cart-check-fill.svg"
             width= "25" height= "25" alt="" </a>          
           </div>
 
           </div>
       </div>
-  </nav>
-  `;
+  </nav>`
 
 return navbar;
 

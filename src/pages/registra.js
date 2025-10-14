@@ -26,10 +26,10 @@ export default function renderRegisterPage() {
     const contentForm = form.querySelector('form');
 
     //Criar o input para nome e adicionar em contentForm
-    const innome = document.createElement('input');
-    innome.type = 'text';
-    innome.className = 'inputs';
-    innome.placeholder = "Digite seu nome";
+    const inNome = document.createElement('input');
+    inNome.type = 'text';
+    inNome.className = 'inputs';
+    inNome.placeholder = "Digite seu nome";
 
     const inCpf = document.createElement('input');
     inCpf.type = 'text';
@@ -45,15 +45,10 @@ export default function renderRegisterPage() {
     
     const inSenha = form.querySelector('input[type="password"]');
      
-    contentForm.insertBefore(innome, contentForm.children[0]);
-    contentForm.insertBefore(inCpf, contentForm.children[1]);
-    contentForm.insertBefore(inTelefone, contentForm.children[2]);
-    
     const confSenha = document.createElement('input');
     confSenha.type = 'password';
     confSenha.placeholder = 'Confirme sua senha';
     confSenha.className = 'inputs';
-    contentForm.insertBefore(confSenha, contentForm.children[5]);
     /*Adicionar confSenha como "child" de form que já contém
         4 elementos: input nome[0], input email[1], input password[2],
         button btn[3], ao adicionar conftSenha antes de btn[3], portanto
@@ -61,13 +56,22 @@ export default function renderRegisterPage() {
         "child" do elemento pai form
     */
 
+    const cam = document.querySelector(".cart");
+    if(cam) cam.remove();
+   
+    contentForm.insertBefore(inNome, contentForm.children[0]);
+    contentForm.insertBefore(inCpf, contentForm.children[1]);
+    contentForm.insertBefore(inTelefone, contentForm.children[2]);
+    contentForm.insertBefore(confSenha, contentForm.children[5]);
+    
+
     const btnRegister = form.querySelector('button');
     btnRegister.textContent = 'Criar conta';
 
     contentForm.addEventListener("submit", async (event) =>{
         event.preventDefault();
 
-        const nome = innome.value.trim();
+        const nome = inNome.value.trim();
         const cpf = inCpf.value.trim();
         const telefone = inTelefone.value.trim();
         const email = inEmail.value.trim();

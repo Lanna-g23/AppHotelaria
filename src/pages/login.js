@@ -39,14 +39,29 @@ export default function renderLoginPage() {
             if (result.ok){
                 console.log("Login realizado com sucesso", result);
                 saveToken(result.token);
-                window.location.pathname = "estudo_php/home";
+                
+                let tipoDoUsuario = "cliente";
+                if(result.raw?.tipo === "funcionario" || result.raw?.role === "admin"){
+                    tipoDoUsuario = "funcionario";
+            }localStorage.setItem("tipo_usuario", tipoDoUsuario);
+
+                if(tipoDoUsuario === "funcioanario"){
+                    console.log("Usuario é funcionario redirecionando.");
+                }else{
+                    console.log("Usuario é cliente redirecionando.")
+                    window.location.pathname = "home";
+                }
+
             }else{
-                console.log('Login invalido!');
+                console.log('login invalido!');
             }
-        }catch{
-            console.log("erro inesperado!");
-        }        
+        } catch {
+            console.log("Erro Inesperado!");
+        }
     });
+
+    const campo = document.querySelector(".cart");
+    if(campo) campo.remove();
 
     const cadastrar = document.createElement('div');
     cadastrar.className = 'registerContainer';

@@ -1,7 +1,7 @@
 <?php 
 require_once __DIR__ ."/../controlles/PasswordController.php";
 require_once __DIR__ ."/../models/ReservationModel.php";
-require_once __DIR__ ."models/RoomModel.php";
+require_once __DIR__ ."/../models/RoomModel.php";
 
 class OrderModel{
     public static function create($conn, $data) {
@@ -12,14 +12,12 @@ class OrderModel{
             $data["cliente_id"],
             $data["pagamento"]
         );
-        $resultado = $stmt->execute();
-        if ($resultado) {
+        if ($stmt->execute()) {
             return $conn->insert_id;
+        }
+        return false;
     }
-    return false;
-}
     public static function createOrder($conn, $data) {
-
         $usuario_id = $data['usuario_id'];
         $cliente_id = $data['cliente_id'];
         $pagamento = $data['pagamento'];
@@ -38,7 +36,7 @@ class OrderModel{
                 throw new RuntimeException("Erro ao criar o pedido");
             }
 
-            foreach ($data['quartos'] as $quartos) {
+            foreach($data['Room'] as $quartos) {
                 $id = $quartos["id"];
                 $inicio = $quartos["inicio"];
                 $fim = $quartos["fim"];

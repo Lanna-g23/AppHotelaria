@@ -14,13 +14,8 @@ const routes = {
 
 //obtém o caminho atual a partir do hash de URL
 function getPath(){
-    //obtém o hash (ex. "#/login"), remove o # e tira espaços
-    //const url = (location.pathname || "").replace("/appHotelaria/", "/").trim();
-    //console.log(url);
-    //retorna url se começar com "/", se não, retorna "/home" como padrão 
-    //return url && url.startsWith("/") ? url : "/home";
-
-
+    
+    // Divide o caminho atual em partes
     const pathParts = location.pathname.split('/').filter(Boolean);
     pathParts.shift();
 

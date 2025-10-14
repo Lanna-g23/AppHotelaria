@@ -27,7 +27,7 @@
             }else{
                 return jsonResponse([   
                     "reposta" => "Erro",
-                    "message" => "credenciais invalidas !!"], 401);
+                    "message" => "credenciais invalidas !!"], 404);
                 }
 
             }

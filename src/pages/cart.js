@@ -1,6 +1,7 @@
 import Categoria from "../components/Categoria.js";
 import Navbar from "../components/Navbar.js";
 import Informacoes from "../components/RoomsInfo.js";
+import buttonReservar from "../components/ButtonReservar.js"
 
 export default function renderCartPage(){
 
@@ -15,14 +16,17 @@ export default function renderCartPage(){
     const navbar = Navbar();
     nav.appendChild(navbar);
 
-    
-    const cart = Categoria();
-    divRoot.appendChild(cart);
+    const categoria = Categoria();
+    divRoot.appendChild(categoria);
 
-    for(var i=0; i<2; i++){
-        const informacoes = Informacoes();
-        divRoot.appendChild(informacoes);
+    for(var i = 0; i < 1; i++){
+        const infor = Informacoes();
+        divRoot.appendChild(infor);
     };
+
+    const butReservar = buttonReservar();
+    divRoot.appendChild(butReservar);
+
 
     //Footer
 }

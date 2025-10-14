@@ -22,25 +22,25 @@ containerCards.innerHTML = `
         <div class="carousel-inner shadow">
 
           <div class="carousel-item active">
-            <img class="d-block w-100" src="public/assets/img/Blue-Star-Hotel-All-Inclusive--Resim-31.jpg" alt="hotel">
+            <img class="d-block w-100" src="public/assets/img/Blue-Star-Hotel-All-Inclusive--Resim-31.jpg" alt="First slide">
           </div>
 
           <div class="carousel-item">
-            <img class="d-block w-100" src="public/assets/img/luxury-hotel-the-peninsula-paris-exterior-night-1920.jpg" alt="entrada">
+            <img class="d-block w-100" src="public/assets/img/luxury-hotel-the-peninsula-paris-exterior-night-1920.jpg" alt="Second slide">
           </div>
 
           <div class="carousel-item">
-            <img class="d-block w-100" src="public/assets/img/Screen-Shot-2018-02-11-at-11.webp" alt="quarto">
+            <img class="d-block w-100" src="public/assets/img/Screen-Shot-2018-02-11-at-11.webp" alt="Third slide">
           </div>
 
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators-${index}" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="carousel-control-prev-icon visually-hidden" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
       </button>
  
       <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators-${index}" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="carousel-control-next-icon visually-hidden" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
       </button>
   </div>
@@ -49,8 +49,8 @@ containerCards.innerHTML = `
         <h5 class="card-title">${title}</h5>
 
         <ul class=list-unstyled md-2">
-        ${camas? `<li>${camas}` : ""}
-        ${preco != null ? `<li>Preco: R$ ${Number(preco).toFixed(2)}</li>` : ""}
+            ${camas? `<li>${camas}</li>` : ""}
+            ${preco != null ? `<li>Preco: R$ ${Number(preco).toFixed(2)}</li>` : ""}
         </ul>
 
         <a href="#" class="btn btn-primary">Reservar</a>

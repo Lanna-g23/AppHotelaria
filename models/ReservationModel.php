@@ -26,8 +26,8 @@ class ReservationModel{
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("iss", $quarto_id, $fim, $inicio);
         $stmt->execute();
-
-        return $stmt->get_result()->fetch_assoc(); 
+        $result = $stmt->get_result();
+        return $result->num_rows > 0; 
     }
 
     
