@@ -21,6 +21,7 @@ class OrderModel{
         $usuario_id = $data['usuario_id'];
         $cliente_id = $data['cliente_id'];
         $pagamento = $data['pagamento'];
+        
         $reservas = [];
         $reservou = false;
 
@@ -36,30 +37,32 @@ class OrderModel{
                 throw new RuntimeException("Erro ao criar o pedido");
             }
 
-            foreach($data['Room'] as $quartos) {
-                $id = $quartos["id"];
-                $inicio = $quartos["inicio"];
-                $fim = $quartos["fim"];
+            foreach($data['quartos'] as $quarto) {
+                $id = $quarto["id"];
+                $inicio = $quarto["inicio"];
+                $fim = $quarto["fim"];
 
                 if (!RoomModel::lockById($conn, $id)){
                     $reservas[] = "Quarto {$id} indisponivel!";
                     continue;
                 }
-                //criar um metodo vna classe reseveModel para avaliar se o quarto esta disponivel no intervalo de data
-                //ReserveModel::isConflict
+                if (!ReservationModel::isConflit($conn, $id, $inicio, $fim)){
+                    $reservas[] = "Quarto {$id} ja esta reservado!";
+                    continue;
+                }
 
                 $reservarResult = ReservationModel::create($conn, [
                     "pedido_id"  => $order_id,
                     "quarto_id" => $id,
                     "adicional_id" => null,
                     "inicio" => $inicio,
-                    "fim" => $fim 
+                    "fim" => $fim,
                 ]);
 
                 $reservou = true;
                 $reservas[] = [
                     "reserva_id"=> $conn->insert_id,
-                    "quarto_id"=> $id,
+                    "quarto_id"=> $id
                 ];
             }
             if ($reservou == true){
@@ -70,7 +73,7 @@ class OrderModel{
                     "messagem" => "reservas criado com sucesso!"
                 ];
             }else{
-                throw new RuntimeException("Pedido não realizado, nenhum quarto encontrado");
+                throw new RuntimeException("Pedido não realizado, nenhum quarto reservado");
             }
 
         }catch(\Throwable $th) {

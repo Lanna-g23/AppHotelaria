@@ -32,13 +32,6 @@ export default function renderHomePage(){
     dateCheckIn.min = dateToday;
     dateCheckOut.min = dateToday;
 
-    dateCheckIn.addEventListener("change", async (e) =>{
-        e.preventDefault();
-
-        dateCheckOut = dateCheckIn.value;
-        dateCheckOut.value = "";
-    });
-
     const guestAmount = dateSelector.querySelector('select');
     const btnSearchRoom = dateSelector.querySelector('button');
 
@@ -73,6 +66,11 @@ export default function renderHomePage(){
         if(dateCheckIn.value){
             const minDateCheckout = getMinDateCheckout(dateCheckIn.value);
             dateCheckOut.min = minDateCheckout;
+
+            if(dateCheckOut.value && dateCheckOut.value <= dateCheckIn.value){
+                dateCheckOut.value = "";
+                alert('A data de check-out deve ser posterior à data de check-in.');
+            }
         }
     });
 
