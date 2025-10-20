@@ -1,5 +1,6 @@
 <?php
     require_once __DIR__ . "/../models/ReservationModel.php";
+    require_once __DIR__ . "/../controlles/ValidatorController.php";
 
 class ReservationController{
     public static function create($conn, $data){
@@ -11,7 +12,7 @@ class ReservationController{
         if($result){
             return jsonResponse(['message'=> 'Reserva foi criada com sucesso']);
         }else{
-        return jsonResponse(['message'=> 'Deu merda'], 400);
+        return jsonResponse(['message'=> 'Falha na criação da reserva'], 404);
         }
     }
 

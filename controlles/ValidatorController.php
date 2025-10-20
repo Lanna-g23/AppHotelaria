@@ -9,6 +9,7 @@ class ValidatorController{
                 $pendets[] = $lbl;
             }
         }
+
         if(!empty($pendets) ){
             $pendets = implode(", ", $pendets);
             jsonResponse(['message'=> "Erro, Falta o campo: ".$pendets], 404);

@@ -1,13 +1,13 @@
 <?php
 
 require_once __DIR__ . "/../models/OrderModel.php";
-require_once "ValidatorController.php";
+require_once __DIR__ . "/../controlles/ValidatorController.php";
 
 class OrderController {
     public static function create($conn, $data){
 
         //corrir 
-        ValidatorController::validate_data($data, ["cliente_id", "pagamento", "quartos"]);
+        ValidatorController::validate_data($data, ["usuario_id", "cliente_id", "pagamento"]);
         $result = OrderModel::create($conn, $data);
         if ($result) {
             return jsonResponse(['message' => 'Pedido criado com sucesso']);
@@ -26,13 +26,13 @@ class OrderController {
     }
 
     public static function createOrder($conn, $data){
-        $data ["usuario_id"] = isset($data['usuario_id']) ? $data['usuario_id'] :null;
+        $data['usuario_id'] = isset($data['usuario_id']) ? $data['usuario_id'] :null;
         ValidatorController::validate_data($data, ["cliente_id", "pagamento", "quartos"]);
 
-        foreach ($data['quartos'] as $quartos) {
-            ValidatorController::validate_data($quartos, ["id", "inicio", "fim"]);
-            $quartos['inicio'] = ValidatorController::fix_hours($quartos['inicio'], 14);
-            $quartos['fim'] = ValidatorController::fix_hours($quartos['fim'], 12);
+        foreach ($data['quartos'] as $quarto) {
+            ValidatorController::validate_data($quarto, ["id", "inicio", "fim"]);
+            $quarto['inicio'] = ValidatorController::fix_hours($quarto['inicio'], 14);
+            $quarto['fim'] = ValidatorController::fix_hours($quarto['fim'], 12);
     }
     if(count($data['quartos']) == 0){
             jsonResponse(['message'=> 'Não existe existentes'], 400);
@@ -43,7 +43,7 @@ class OrderController {
             return jsonResponse(['message' => $resultado]);
             
         } catch (\Throwable $error) {
-            return jsonResponse(['message' => $error->getMessage()], 500);
+            return jsonResponse(['message'=>$error->getMessage()], 500);
         }
     }
 }

@@ -56,7 +56,7 @@ class ClientModel{
         $stmt->bind_param("i", $id);
         return $stmt->execute();
     }
-
+    
     public static function update($conn, $id, $data){
         $sql = "UPDATE clientes SET nome = ?, cpf = ?, telefone = ?, email = ?, senha = ? WHERE id = ?";
         $stmt = $conn->prepare($sql);
