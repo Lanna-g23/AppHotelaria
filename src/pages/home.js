@@ -135,7 +135,7 @@ export default function renderHomePage(){
                 if(mods) mods.remove();
                 document.body.appendChild(mods);
 
-                const bootstrapModal = new bootstrap.Modal(mods);
+                const bootstrapModal = new bootstrap.Modal(mod);
                 bootstrapModal.show();
                 return;
             }
@@ -144,8 +144,8 @@ export default function renderHomePage(){
         result.forEach((itemCard, i) => {
             cardsGroup.appendChild(RoomCard(itemCard, i));
         })
-    }catch(erro){
-        console.log(erro);
+    }catch(Error){
+        console.log(Error);
         sp.remove();
     }
 });

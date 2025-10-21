@@ -43,7 +43,7 @@ export async function listAvailaRoomsRequest({inicio, fim, qtd}){
         throw new Error(msg);
     }
 
-    const rooms = Array.isArray(data?.rooms) ? data.rooms : [];
-    console.log(rooms);
-    return rooms;
+    const quartos = Array.isArray(data?.quartos) ? data.quartos : [];
+    console.log(quartos);
+    return quartos;
 }

@@ -3,6 +3,7 @@ import renderLoginPage from "./pages/login.js";
 import renderRegisterPage from "./pages/registra.js";
 import renderCartPage from "./pages/cart.js";
 
+
 //configuração de rotas mapeadas
 const routes = {
     "/login": renderLoginPage,
