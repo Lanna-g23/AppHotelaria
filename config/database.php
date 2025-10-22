@@ -8,6 +8,8 @@ try{
     }
 }catch(mysqli_sql_exception $erro){
     $erroDB = true;
+
+    
 }
 
 ?>

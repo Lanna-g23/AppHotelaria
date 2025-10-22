@@ -9,6 +9,16 @@ class RoomController{
 
         $result = RoomModel::create($conn, $data);
         if ($result){
+            if ($data['fotos']){
+                $pictures = UploadController::upload($data['fotos']);
+                foreach ($pictures['saves']['name'] as $name){
+                    return jsonResponse()
+                    $idPhoto = Photosmodel::create($conn, $name);
+                    if ($idPhoto){
+                        Photosmodel::createRelationRoom($conn, $result, $idPhoto);
+                    }
+                }
+            }
             return jsonResponse(['message'=>"Quarto criado com sucesso"]);
         }else{
             return jsonResponse(['message'=>"Erro ao criar o quarto"], 404);

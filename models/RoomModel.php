@@ -1,6 +1,6 @@
 <?php
-class RoomModel{
 
+class RoomModel{
     public static function create($conn, $data){
         $sql = "INSERT INTO quartos (nome, numero, qtd_cama_solteiro, qtd_cama_casal, preco, disponivel) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
@@ -12,8 +12,11 @@ class RoomModel{
             $data["preco"],
             $data["disponivel"]
         );
-        return $stmt->execute();
+        if($stml->execute()){
+            return $conn->insert_id;
     }
+    return false;
+}
 
     public static function getAll($conn){
         $sql = "SELECT * FROM quartos";
