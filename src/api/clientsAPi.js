@@ -3,7 +3,7 @@ export async function createRequest(nome, cpf, telefone, email, senha ){
     
     const response = await fetch("api/cliente", {
         method: "POST",
-        headers:{
+        headers: {
             "Accept": "application/json",
             "Content-Type": "application/json"
         },

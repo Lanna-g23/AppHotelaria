@@ -33,7 +33,7 @@ if($route != "api"){
 }
 //back-end para rotas de requição (endpoint)
 elseif ($route === "api"){
-    if (in_array($subRoute, ["login", "rooms", "cliente", "adicional", "reserva", "pedido", "disponiveis" ])){
+    if (in_array($subRoute, ["login", "rooms", "cliente", "adicional", "reserva", "pedido", "disponiveis", "quartos-register", "pictures"])){
         require "routes/${subRoute}.php";
     }else{
         return jsonResponse(['message'=>'Rota da API não encontrada'], 404); 

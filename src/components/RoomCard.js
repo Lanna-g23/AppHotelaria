@@ -1,4 +1,4 @@
-function calculoDiaria(checkIn, checkOut){
+function calculoDiaria(){
   const checkIn = "2026-01-01";
   const checkOut = "2026-01-08";
 
@@ -13,7 +13,7 @@ function calculoDiaria(checkIn, checkOut){
 
   console.log( "Milissegundos desde 2026-01-01 00:00:00: " + tzin);
 
-  return Math.floor((tzin - tzout) / (1000 * 60 * 60 * 24));
+  return Math.floor((tzout - tzin) / (1000 * 60 * 60 * 24));
 
 }
 
@@ -78,7 +78,7 @@ containerCards.innerHTML = `
 </div>
 `;
 
-calculoDiaria();
+console.log (calculoDiaria());
 
 return containerCards;
 
