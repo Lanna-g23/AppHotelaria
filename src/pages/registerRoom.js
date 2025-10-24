@@ -1,9 +1,9 @@
-import FormR from "../components/FormRoom.js";
+import Form from "../components/FormRoom.js";
 
 export default function RenderRegisterRoom() {
-    FormR();
+    Form();
 
-    const contentForm = FormR.querySelector('form');
+    const contentForm = Form.querySelector('form');
 
     const nomeRoom = contentForm.querySelector('input[type="text"]');
     const numeroRoom = contentForm.querySelector('input[type="number"]');

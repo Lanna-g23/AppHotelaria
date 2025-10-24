@@ -4,6 +4,31 @@ de pagina e nao tenha "re-logar" */
 //import { getToken } from "./AuthAPI.js";
 
 // Listar todos os quartos independente de filtro 
+
+export async function addRoom(contentForm) {
+    const formData = new FormData(contentForm);
+    const typeAccept = ['image/jpeg', 'image/png'];
+    const inFotos = contentForm.querySelector('#formFileMultiple');
+    
+    const imag = inFotos.files;
+    for(let i = 0; i < imag.length; i++){
+        if(!typeAccept.includes(imag[i].type)){
+            throw new Error(`Arquivo "${imag[i].name}" não é suportado.
+                Selecione um arquivo JPG ou PNG`);
+        }
+    }
+    const url = `api/rooms`;
+    const response = await fetch(url,{
+        method: "POST",
+        body: formData
+    });
+    if(!response.ok){
+        throw new Error(`Erro ao enviar requisição: ${response.status}`);
+    }
+    const result = await response.json();
+    return result;
+}
+
 export async function listAvailaRoomsRequest({inicio, fim, qtd}){
     const params = new URLSearchParams();
 
@@ -43,12 +68,12 @@ export async function listAvailaRoomsRequest({inicio, fim, qtd}){
         throw new Error(msg);
     }
 
-    const quartos = Array.isArray(data?.quartos) ? data.quartos : [];
+    const quartos = Array.isArray(data?.Quartos) ? data.Quartos : [];
     console.log(quartos);
     return quartos;
 }
 export async function creatQuartos(nome, numero, qtd_cama_casal, qtd_cama_solteiro, preco){
-    const dados = { nome, numero, qtd_cama_casal, qtd_cama_solteiro, preco };
+    const dados = {nome, numero, qtd_cama_casal, qtd_cama_solteiro, preco};
 
     const response = await fetch("api/quartos", {
         method: "POST",

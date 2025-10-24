@@ -3,14 +3,15 @@ class UploadController{
     static $maxSize = 1024 * 1024 * 5;
     static $typefiles = [
         "image/png" => "png",
-        "image/jpeg"=> "jpg",  
+        "image/jpeg" => "jpg",  
     ];
     static $path = __DIR__ ."/../uploads/";
 
     public static function normalizePictures($pictures){
     $files = [];
-    if(is_array($pictures["name"])){
-        foreach($pictures["name"] as $index => $name){
+    
+    if(is_array($pictures['name'])){
+        foreach($pictures['name'] as $index => $name){
             $files[] = [
                 "name"=> $pictures['name'][$index],
                 "type" => $pictures['type'][$index],

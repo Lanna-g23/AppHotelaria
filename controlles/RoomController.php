@@ -1,6 +1,8 @@
 <?php
 require_once __DIR__ . "/../models/RoomModel.php";
 require_once __DIR__ . "/ValidatorController.php";
+require_once __DIR__ . "/UploadController.php";
+require_once __DIR__ . "/../models/PhotoModel.php";
 
 class RoomController{
     public static function create($conn, $data){
@@ -11,9 +13,8 @@ class RoomController{
         if ($result){
             if ($data['fotos']){
                 $pictures = UploadController::upload($data['fotos']);
-                foreach ($pictures['saves']['name'] as $name){
-                    return jsonResponse()
-                    $idPhoto = Photosmodel::create($conn, $name);
+                foreach ($pictures['saves'] as $name){
+                    $idPhoto = Photosmodel::create($conn, $name['name']);
                     if ($idPhoto){
                         Photosmodel::createRelationRoom($conn, $result, $idPhoto);
                     }
@@ -36,7 +37,6 @@ class RoomController{
     }
 
      public static function delete($conn, $id){
-        
         $result = RoomModel::delete($conn, $id);
         if ($result){
             return jsonResponse(['message'=>"Quarto excluido com sucesso"]);
@@ -63,9 +63,12 @@ class RoomController{
         
         $result = RoomModel::get_available($conn, $data);
         if($result){
+            foreach ($result as & $quarto){
+                $quarto['fotos'] = Photosmodel::getByRoomId($conn, $quarto['id']);
+            }
             return jsonResponse(['Quartos'=> $result]);
         }else{
-            return jsonResponse(['message'=> 'Erro'], 401);
+            return jsonResponse(['message'=> 'não tem quartos disponiveis'], 401);
         }
         
     }

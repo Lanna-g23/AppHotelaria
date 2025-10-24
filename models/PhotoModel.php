@@ -2,15 +2,36 @@
 
 class Photosmodel{
 
+     public static function create($conn, $data){
+        $sql = "INSERT INTO imagens (nome) VALUES (?)";
+        $stml = $conn->prepare($sql);
+        $stml->bind_param("s", $data["name"],);
+        if($stml->execute()){
+            return $conn->insert_id;
+    }
+    return false;
+}
     public static function getAll($conn){
-        $sql = "SELECT * from adicionais";
+        $sql = "SELECT * FROM imagens";
         $result = $conn->query($sql);
         return $result->fetch_all(MYSQLI_ASSOC);
     }
     
+    public static function getById($conn, $id){
+        $sql = "SELECT * FROM imagens WHERE id = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        return $stmt->get_result()->fetch_assoc();
+    }
+
     public static function getByRoomId($conn, $id){
-        $sql = "SELECT f.nome FROM imagens JOIN fotos qf ON qf.nome = f.id
-        WHERE qf.quarto_id = ?";
+        $sql = "SELECT i.nome 
+        FROM upimages upi 
+        JOIN imagens i 
+        ON upi.image_id = i.id
+        WHERE upi.quarto_id = ?";
+
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("i", $id);
         $stmt->execute();
@@ -21,18 +42,9 @@ class Photosmodel{
         }
         return $photos;
     }
-        public static function create($conn, $name){
-        $sql = "INSERT INTO imagens (nome) VALUES (?)";
-        $stml = $conn->prepare($sql);
-        $stml->bind_param("s", $name);
-        if($stml->execute()){
-            return $conn->insert_id;
-    }
-    return false;
-}
 
     public static function createRelationRoom($conn, $idRoom, $idPhoto){
-        $sql = "INSERT INTO imagens (nome, caminho) VALUES (?, ?)";
+        $sql = "INSERT INTO upimages (quarto_id, image_id) VALUES (?, ?)";
         $stml = $conn->prepare($sql);
         $stml->bind_param("ii", $idRoom, $idPhoto);
         if($stml->execute()){
@@ -42,16 +54,18 @@ class Photosmodel{
 }
 
     public static function delete($conn, $id){
-        $sql = "DELETE FROM adicionais WHERE id = ?";
+        $sql = "DELETE FROM imagens WHERE id = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("i", $id);
         return $stmt->execute();
     }
 
-    public static function update($conn, $id, $name){
+    public static function update($conn, $id, $data){
         $sql = "UPDATE imagens SET nome = ? WHERE id = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("si", $name, $id);
+        $stmt->bind_param("si",
+        $data["nome"],
+        $id);
         return $stmt->execute();
     }
 }

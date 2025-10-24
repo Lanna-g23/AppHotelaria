@@ -12,11 +12,12 @@ class RoomModel{
             $data["preco"],
             $data["disponivel"]
         );
-        if($stml->execute()){
+
+        if ($stmt->execute()){
             return $conn->insert_id;
+        }
+        return false;
     }
-    return false;
-}
 
     public static function getAll($conn){
         $sql = "SELECT * FROM quartos";
