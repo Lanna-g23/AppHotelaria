@@ -6,11 +6,12 @@ class Photosmodel{
         $sql = "INSERT INTO imagens (nome) VALUES (?)";
         $stml = $conn->prepare($sql);
         $stml->bind_param("s", $data["name"],);
+
         if($stml->execute()){
             return $conn->insert_id;
+        }
+        return false;
     }
-    return false;
-}
     public static function getAll($conn){
         $sql = "SELECT * FROM imagens";
         $result = $conn->query($sql);

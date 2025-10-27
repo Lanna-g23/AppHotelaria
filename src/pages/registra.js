@@ -76,7 +76,7 @@ export default function renderRegisterPage() {
         const telefone = inTelefone.value.trim();
         const email = inEmail.value.trim();
         const senha = inSenha.value.trim();
-      
+    
         try{
             const result = createRequest(nome, cpf, telefone, email, senha);
         }catch{

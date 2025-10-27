@@ -63,7 +63,7 @@ class RoomController{
         
         $result = RoomModel::get_available($conn, $data);
         if($result){
-            foreach ($result as & $quarto){
+            foreach ($result as &$quarto){
                 $quarto['fotos'] = Photosmodel::getByRoomId($conn, $quarto['id']);
             }
             return jsonResponse(['Quartos'=> $result]);

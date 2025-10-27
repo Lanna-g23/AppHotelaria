@@ -1,6 +1,6 @@
-function calculoDiaria(){
-  const checkIn = "2026-01-01";
-  const checkOut = "2026-01-08";
+function calculoDiaria(checkIn, checkOut){
+/*  const checkIn = "2026-01-01";
+  const checkOut = "2026-01-08";*/
 
   const [yin, min, din] = String(checkIn).split("-").map(Number);
   const [yout, mout, dout] = String(checkOut).split("-").map(Number);
@@ -19,7 +19,7 @@ function calculoDiaria(){
 
 
 export default function RoomCard(itemCard, index = 0) {
-  const{ nome, numero, qtd_cama_solteiro, qtd_cama_casal, preco} = itemCard || {};
+  const{id, nome, numero, qtd_cama_solteiro, qtd_cama_casal, preco} = itemCard || {};
   const title = nome;
 
   const camas = [
@@ -67,18 +67,28 @@ containerCards.innerHTML = `
  
     <div class="card-body">
         <h5 class="card-title">${title}</h5>
-
         <ul class=list-unstyled md-2">
-            ${camas? `<li>${camas}</li>` : ""}
+            ${camas? `<li>${camas}` : ""}
             ${preco != null ? `<li>Preço diária: R$ ${Number(preco).toFixed(2)}</li>` : ""}
         </ul>
 
-        <a href="#" class="btn btn-primary">Reservar</a>
+        <a href="#" class="btn btn-primary btn-reservar">Reservar</a>
       </div>
 </div>
 `;
+containerCards.querySelector(".btn-reservar").addEventListener('click', (e) =>{
+  e.preventDefault();
 
-console.log (calculoDiaria());
+  const idDateCheckin = document.getElementById("id-dateCheckIn");
+  const idDateCheckout = document.getElementById("id-dateCheckOut");
+  const idGuestAmount = document.getElementById("id-guestAmount");
+
+  const inicio = (idDateCheckin?.value || "");
+  const fim = (idDateCheckout?.value || "");
+  const qtd = parseInt|(idGuestAmount?.value || "0", 10);
+});
+
+console.log(calculoDiaria());
 
 return containerCards;
 

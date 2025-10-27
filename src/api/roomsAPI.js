@@ -9,41 +9,46 @@ export async function addRoom(contentForm) {
     const formData = new FormData(contentForm);
     const typeAccept = ['image/jpeg', 'image/png'];
     const inFotos = contentForm.querySelector('#formFileMultiple');
-    
-    const imag = inFotos.files;
-    for(let i = 0; i < imag.length; i++){
-        if(!typeAccept.includes(imag[i].type)){
-            throw new Error(`Arquivo "${imag[i].name}" não é suportado.
-                Selecione um arquivo JPG ou PNG`);
+    const imgs = inFotos.files;
+    for(let i = 0; i < imgs.length; i++){
+        if(!typeAccept.includes(imgs[i].type)){
+            throw new Error(`Arquivo "${imgs[i].name}" não é suportado.
+            Selecione um arquivo JPG ou PNG`);
         }
     }
     const url = `api/rooms`;
-    const response = await fetch(url,{
+    const response = await fetch(url, {
         method: "POST",
         body: formData
     });
-    if(!response.ok){
+
+    let result = null;
+    try {
+        result = await response.json();
+    }catch {
+        // Se não for JSON válido, result permanece null
+        result = null;
+    }
+    if(!response.ok) {
         throw new Error(`Erro ao enviar requisição: ${response.status}`);
     }
-    const result = await response.json();
-    return result;
+    return result; 
 }
 
 export async function listAvailaRoomsRequest({inicio, fim, qtd}){
     const params = new URLSearchParams();
 
-    if(inicio){params.set("inicio", inicio);}
+    if(inicio) params.set("inicio", inicio);
 
-    if(fim){params.set("fim", fim);}
+    if(fim) params.set("fim", fim);
 
-    if(qtd !== null && qtd !== ""){params.set("qtd", String(qtd));}
+    if(qtd !== null && qtd !== "") params.set("qtd", String(qtd));
 
     const url = `api/rooms/disponiveis?${params.toString()}`;
     const response = await fetch(url, {
         method: "GET",
         headers: {
             "Accept": "application/json",
-            "Content-Type": "application/json"
         },
         credentials: "same-origin",     
     });
@@ -72,7 +77,7 @@ export async function listAvailaRoomsRequest({inicio, fim, qtd}){
     console.log(quartos);
     return quartos;
 }
-export async function creatQuartos(nome, numero, qtd_cama_casal, qtd_cama_solteiro, preco){
+/*export async function creatQuartos(nome, numero, qtd_cama_casal, qtd_cama_solteiro, preco){
     const dados = {nome, numero, qtd_cama_casal, qtd_cama_solteiro, preco};
 
     const response = await fetch("api/quartos", {
@@ -95,4 +100,4 @@ export async function creatQuartos(nome, numero, qtd_cama_casal, qtd_cama_soltei
         ok:true,
         raw:data
     };
-}
+}*/

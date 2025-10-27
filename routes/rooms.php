@@ -25,8 +25,8 @@ if($_SERVER['REQUEST_METHOD'] === "GET" ){
     }
 
 elseif($_SERVER['REQUEST_METHOD'] === "POST" ){
-    $data = #_POST;
-    $data['fotos'] = $_FILES['fotos'];
+    $data = $_POST;
+    $data['fotos'] = $_FILES['fotos'] ?? null;
     RoomController::create($conn, $data);
 }
 

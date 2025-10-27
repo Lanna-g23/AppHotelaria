@@ -1,6 +1,6 @@
-import Form from "../components/Form";
-import Navbar from "../components/Navbar";
-import {addRoom}  from '../api/roomsAPI'
+import Form from "../components/Form.js";
+import Navbar from "../components/Navbar.js";
+import {addRoom}  from '../api/roomsAPI.js'
 
 export default function renderManageRoom(){
 
@@ -10,38 +10,47 @@ export default function renderManageRoom(){
     nav.appendChild(navbar);
 
     const form = Form();
+    const titulo = form.querySelector('h1');
+    titulo.textContent = 'Gerenciar quarto';
+
     const contentForm = form.querySelector('form');
+    contentForm.enctype = "multipart/form-data";
 
     //nome, numero, qtd_casal,
     const inNome = contentForm.querySelector('input[type=email]');
     inNome.type = 'text';
     inNome.placeholder = "Digite o nome"
+    inNome.name = 'nome';
 
     const inNumero = contentForm.querySelector('input[type=password]');
     inNumero.type = 'text';
     inNumero.placeholder = "Digite o número"
+    inNumero.name = 'numero';
 
-
-    const inQrd_Casal = document.createElement('select');
-    inQrd_Casal.className = 'select-qtd';
-    inQrd_Casal.style.borderWidth = '0.15rem';
-    inQrd_Casal.innerHTML =
+    const inQtd_Casal = document.createElement('select');
+    inQtd_Casal.className = 'select-qtd';
+    inQtd_Casal.style.borderWidth = '0.15rem';
+    inQtd_Casal.innerHTML =
     `
-    <option value="">Quantidades cama de casal</option>
+    <option  class="" value="0">Quantidades cama de casal</option>
     <option value="1">1 Pessoa</option>
     <option value="2">2 Pessoas</option>
     <option value="3">3 Pessoas</option>`
 
-    const inQrd_Solteito = document.createElement('input');
-    inQrd_Solteito.type = 'number';
-    inQrd_Solteito.placeholder = 'Quantidade cama solteiro'
-    inQrd_Solteito.min = 0;
-    inQrd_Solteito.max = 3;
+    inQtd_Casal.name = "qtd_casal";
+
+    const inQtd_Solteito = document.createElement('input');
+    inQtd_Solteito.type = 'number';
+    inQtd_Solteito.placeholder = 'Quantidade cama solteiro'
+    inQtd_Solteito.min = 0;
+    inQtd_Solteito.max = 3;
+    inQtd_Solteito.name = "qtd_solteiro";
 
     const inPreco = document.createElement('input');
     inPreco.type = 'number';
     inPreco.placeholder = 'Digite o preço da diária';
     inPreco.step = "0.01";
+    inPreco.name = "preco";
 
     const subTitDisp = document.createElement('p');
     subTitDisp.textContent = 'Quarto disponivel'
@@ -54,7 +63,7 @@ export default function renderManageRoom(){
     const inDispTrue = document.createElement('input');
     inDispTrue.type = 'radio';
     inDispTrue.name = 'disponivel';
-    inDispTrue.value = true;
+    inDispTrue.value = "1";
     
     const labelFalse = document.createElement('label');
     labelFalse.textContent = 'Não';
@@ -62,14 +71,14 @@ export default function renderManageRoom(){
     const inDispFalse = document.createElement('input');
     inDispFalse.type = 'radio';
     inDispFalse.name = 'disponivel';
-    inDispFalse.value = false;
+    inDispFalse.value = "0";
 
     divDisp.appendChild(subTitDisp);
     divDisp.appendChild(inDispTrue);
     divDisp.appendChild(labelTrue);
 
 
-    contentForm.insertBefore(inDispFalse);
+    contentForm.appendChild(inDispFalse);
     divDisp.appendChild(labelFalse);
 
     const inFotos = document.createElement('input');
@@ -86,8 +95,8 @@ export default function renderManageRoom(){
     class="form-control" accept="imag/*"/>
 */
     
-    contentForm.insertBefore(inQrd_Casal, contentForm.children[2]);
-    contentForm.insertBefore(inQrd_Solteito, contentForm.children[3]);
+    contentForm.insertBefore(inQtd_Casal, contentForm.children[2]);
+    contentForm.insertBefore(inQtd_Solteito, contentForm.children[3]);
     contentForm.insertBefore(inPreco, contentForm.children[4]);
     contentForm.insertBefore(divDisp, contentForm.children[5]);
     contentForm.insertBefore(inFotos, contentForm.children[6]);

@@ -5,7 +5,7 @@ import RoomCard from "../components/RoomCard.js";
 import DateSelector from "../components/DateSelector.js";
 import { listAvailaRoomsRequest } from "../api/roomsAPI.js";
 import spinner from "../components/spinner.js";
-import  modal  from "../components/modal.js";
+import modal  from "../components/modal.js";
 import CardLounge from "../components/CardLounge.js";
 
 export default function renderHomePage(){
@@ -33,14 +33,20 @@ export default function renderHomePage(){
     dateCheckOut.min = dateToday;
 
     const guestAmount = dateSelector.querySelector('select');
+    
+    dateCheckIn.id = 'id-dateCheckin';
+    dateCheckOut.id = 'id-dateCheckout';
+    guestAmount.id = 'id-guestAmount';
+    
     const btnSearchRoom = dateSelector.querySelector('button');
 
     const divCarts = document.createElement('div');
+    divCarts.innerHTML = '';
     divCarts.className = "cards";
     divCarts.id = "cards-result";
 
     const cardsGroupInfra = document.createElement('div');
-    cardsGroupInfra.className = "cards";
+    cardsGroupInfra.className = "carts";
     const tituloInfra = document.createElement('h2');
     tituloInfra.textContent = "Conheça nosso Hotel";
     tituloInfra.style.textAlign = "center";
@@ -61,6 +67,7 @@ export default function renderHomePage(){
         minDaily.setDate(minDaily.getDate() + 1);
         return minDaily.toISOString().split('T')[0];
     }
+    
     dateCheckIn.addEventListener('change', async (e) => {
         e.preventDefault();
         if(dateCheckIn.value){
@@ -86,8 +93,8 @@ export default function renderHomePage(){
                     title: "Aviso!",
                     message: "Preencha todos os campos"
                 });
-                const modal = document.getElementById("modalAviso");
-                if (modal) modal.remove();
+                const Modal = document.getElementById("modalAviso");
+                if (Modal) Modal.remove();
 
                 document.body.appendChild(mode);
 
@@ -106,8 +113,8 @@ export default function renderHomePage(){
                 message: "A data de check-out deve ser posterior à data de check-in."
         });
 
-        const modal = document.getElementById("modalAviso");
-            if (modal) modal.remove();
+        const Modal = document.getElementById("modalAviso");
+            if (Modal) Modal.remove();
 
             document.body.appendChild(mod);
 
@@ -135,17 +142,17 @@ export default function renderHomePage(){
                 if(mods) mods.remove();
                 document.body.appendChild(mods);
 
-                const bootstrapModal = new bootstrap.Modal(mod);
+                const bootstrapModal = new bootstrap.Modal(mods);
                 bootstrapModal.show();
                 return;
             }
 
         divCarts.innerHTML ='';
-        result.forEach((itemCard, i) => {
-            cardsGroup.appendChild(RoomCard(itemCard, i));
+        room2.forEach((itemCard, i) => {
+            divCarts.appendChild(RoomCard(itemCard, i));
         })
-    }catch(Error){
-        console.log(Error);
+    }catch(erro){
+        console.log(erro);
         sp.remove();
     }
 });
