@@ -8,7 +8,7 @@ export default function buttonReservar() {
     divPrincipal.style.display = 'flex';
     divPrincipal.style.marginLeft = '100px';
     divPrincipal.style.marginTop = '10px';
-    divPrincipal.style.width = '65%';
+    divPrincipal.style.width = '65% ';
     divPrincipal.style.justifyContent = 'space-between';
 
     divPrincipal.style.borderRadius = '20px';
@@ -30,7 +30,6 @@ export default function buttonReservar() {
     reserv.style.border = 'grey';
     reserv.style.color = 'white';
  
-
     const total = document.createElement('h2');
     total.textContent = 'Valor total: ';
     total.style.fontSize = '20px';

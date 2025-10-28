@@ -38,7 +38,7 @@ class Photosmodel{
         $stmt->execute();
         $result = $stmt->get_result();
         $photos = [];
-        while($row = $result->fecth_assoc()){
+        while($row = $result->fetch_assoc()){
             $photos[] = $row['nome'];
         }
         return $photos;

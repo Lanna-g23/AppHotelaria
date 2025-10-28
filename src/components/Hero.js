@@ -14,15 +14,15 @@ export default function Hero(){
       <div class="carousel-inner shadow">
 
         <div class="carousel-item active">
-          <img src="public/assets/img/Screen-Shot-2018-02-11-at-11.webp" class="d-block w-100" alt="...">
+          <img src="public/assets/img/img.webp" class="d-block w-100" alt="...">
         </div>
 
         <div class="carousel-item">
-          <img src="public/assets/img/luxury-hotel-the-peninsula-paris-exterior-night-1920.jpg" class="d-block w-100" alt="...">
+          <img src="public/assets/img/img2.jpg" class="d-block w-100" alt="...">
         </div>
 
         <div class="carousel-item">
-          <img src="public/assets/img/Blue-Star-Hotel-All-Inclusive--Resim-31.jpg" class="d-block w-100" alt="...">
+          <img src="public/assets/img/img3.jpg" class="d-block w-100" alt="...">
         </div>
 
       </div>

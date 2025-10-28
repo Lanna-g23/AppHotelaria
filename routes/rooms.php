@@ -16,7 +16,7 @@ if($_SERVER['REQUEST_METHOD'] === "GET" ){
                 
                 RoomController::get_available($conn, $data); 
             }else{
-                jsonResponse(['message'=>'Essa Rota não existe'], 400);
+                jsonResponse(['message'=>'Essa rota não existe'], 400);
             }
         }else{
             //RoomController::getall($conn);
@@ -32,7 +32,7 @@ elseif($_SERVER['REQUEST_METHOD'] === "POST" ){
 
 elseif($_SERVER['REQUEST_METHOD'] === "PUT" ){
     $data = json_decode(file_get_contents('php://input'), true);
-    $id = $data['id'] ?? null;
+    $id = $data['id'];
     RoomController::update($conn, $id, $data);
 
 }
@@ -51,6 +51,5 @@ elseif($_SERVER['REQUEST_METHOD'] === "DELETE" ){
         'message'=>'Método não permitido'
     ], 405);
 }
-
 
 ?>

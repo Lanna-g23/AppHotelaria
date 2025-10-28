@@ -118,11 +118,10 @@ export default function Footer() {
     <!-- Section: Links  -->
 
     <!-- Copyright -->
-    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-        © 2021 Copyright:
-        <a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+    <div class="d-flex justify-content-center gap-4 p-4" style="background-color: rgba(0, 0, 0, 0.2);">
+        <p>© 2025 Copyright</p>
+        <a class="text-reset fw-bold" href="#">transilvania.com</a>
     </div>
-    <!-- Copyright -->
     </footer>
     `;
     return footer;

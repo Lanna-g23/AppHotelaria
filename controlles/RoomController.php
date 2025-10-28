@@ -19,8 +19,7 @@ class RoomController{
                         Photosmodel::createRelationRoom($conn, $result, $idPhoto);
                     }
                 }
-            }
-            return jsonResponse(['message'=>"Quarto criado com sucesso"]);
+            }return jsonResponse(['message'=>"Quarto criado com sucesso"]);
         }else{
             return jsonResponse(['message'=>"Erro ao criar o quarto"], 404);
         }
@@ -46,7 +45,7 @@ class RoomController{
     }
 
     public static function update($conn, $id, $data){
-        ValidatorController::validate_data($data, ["nome", "numero", "qtd_cama_solteiro", "qtd_cama_casal", "preco", "disponivel"]);
+        ValidatorController::validate_data($data, ["nome", "numero", "qtd_cama_casal", "qtd_cama_solteiro", "preco", "disponivel"]);
         $result = RoomModel::update($conn, $id, $data);
         if($result){
             return jsonResponse(['message'=> 'Quarto atualizado com sucesso']);

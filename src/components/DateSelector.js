@@ -14,7 +14,7 @@ const guestAmount = document.createElement('select');
 guestAmount.className = 'inputDate card p-3 shadow-lg';
 guestAmount.innerHTML =
 `
-    <option value="">Quantas Pessoas?</option>
+    <option value="0">Quantas Pessoas?</option>
     <option value="1">1 Pessoa</option>
     <option value="2">2 Pessoas</option>
     <option value="3">3 Pessoas</option>
@@ -25,6 +25,7 @@ const btnSearchRoom = document.createElement('button');
 btnSearchRoom.type = 'submit';
 btnSearchRoom.textContent = 'Pesquisar';
 btnSearchRoom.className = 'btn btn-primary';
+
 DivDate.appendChild(dateCheckIn);
 DivDate.appendChild(dateCheckOut);
 DivDate.appendChild(guestAmount);

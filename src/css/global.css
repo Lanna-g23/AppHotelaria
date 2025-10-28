@@ -1,6 +1,6 @@
 #root {
   flex-direction: column;
-  gap: 10vh;
+  gap: 5vh;
   padding-bottom: 10vh; 
 }
 
@@ -10,15 +10,31 @@ form {
 
 .registerButton {
   margin-top: 15px;
-  color: white;
+  color: rgb(15, 15, 15);
 }
+
+.registerButton {
+  background-image: url(/public/assets/img/img.webp);
+}
+
+.btn-css{
+  padding: 8px 10px;
+  background-color: rgb(45, 42, 42);
+  border-radius: 10px;
+  color: rgb(246, 246, 246);
+  transition: 0.3s ease all;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
 .registerButton:hover {
-  color: #dadfe0;
+  color: #0554f2;
 }
 
 .registerContainer {
-  margin-top: 10px;
-  color: white;
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+  color: rgb(59, 176, 255);
 }
 
 .titulo {
@@ -37,7 +53,7 @@ form {
 }
 
 .btn-primary {
-  background-color: rgb(145, 146, 146);
+  background-color: rgb(25, 89, 218);
   border: none;
 }
 
@@ -47,11 +63,11 @@ form {
 }
 
 .btn-primary:focus {
-  background-color: rgb(136, 136, 136);
+  background-color: rgb(3, 45, 94);
 }
 
 .btn-primary:active {
-  background-color: rgb(136, 136, 136) !important;
+  background-color: rgb(3, 38, 78)!important;
   border: none;
 }
 
@@ -59,7 +75,7 @@ form {
   border-radius: 10px;
   text-align: center;
   margin-bottom: 15px;
-  padding: 5px;
+  padding: 8px;
   border: 1px solid #dbd5d5;
 }
 
@@ -98,11 +114,11 @@ form {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: 35px;
+    gap: 45px;
 }
 
 .divDate{
-    display:flex;
+    display: flex;
     justify-content: center;
     gap: 15px;
 }
