@@ -24,10 +24,10 @@ class ClientModel{
         $sql = "SELECT clientes.id,
         clientes.email,
         clientes.senha,
-        clientes.nome,
-        roles.nome FROM clientes
-        AS clientes
-        JOIN roles ON roles.id = clientes.role_id WHERE clientes.email = ?;";
+        clientes.nome, roles.nome AS roles 
+        FROM clientes AS clientes
+        JOIN roles ON roles.id = clientes.role_id 
+        WHERE clientes.email = ?;";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("s", $email);
         $stmt->execute();

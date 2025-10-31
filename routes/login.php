@@ -8,17 +8,13 @@ if($_SERVER['REQUEST_METHOD'] === "POST"){
     $data = json_decode(file_get_contents("php://input"), true);
     
     if($op == "cliente"){
-
         AuthController::loginClient($conn, $data); 
     
     }elseif ($op == "funcionario") {
         AuthController::login($conn, $data);
-    
     }else{
       jsonResponse(['status'=>'Erro', 'message'=>'rota não foi encontrada']);
     }
-
-    AuthController::login($conn, $data);
 
 }
 else{

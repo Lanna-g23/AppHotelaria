@@ -16,25 +16,32 @@ function createToken($user){
 
 function validateToken($token){
     try{
-        $key = new Key(SECRET_KEY, "HS256");
+        $key = new Key(SECRET_KET, "HS256");
         $decode = JWT::decode($token, $key);
-        return $decode->sub;
+        $result = json_decode( json_encode($decode->sub) , true);
+        return $result;
     }catch(Exception $error){
         return false;
     }
 }
-
-function validateTokenAPI(){
+function validateTokenAPI($typeRole){
     $headers = getallheaders();
-    if(isset($headers["Authorization"])){
-    return jsonResponse(['message'=> "Token ausente"],200);
-    exit;
+    if( !isset($headers["Authorization"])){
+        jsonResponse(['message'=> "Token ausente"],401);
+        exit;
 }
     $token = str_replace("Bearer ", "", $headers["Authorization"]);
-    if(!validateToken($token)){
-        return jsonResponse(['message'=> "Token invalido"], 401);
-    exit;
+    $user = validateToken($token);
+    if(!$user){
+        jsonResponse(['message'=> "Token invalido"], 401);
+        exit;
     }
+    //aqui vai a rota do validar o cargo
+    if($user['roles'] != $typeRole){
+        jsonResponse(['message'=> "Usuario não autorizado!"],401);
+        exit;
+    }
+    return $user;
 }
 
 ?>

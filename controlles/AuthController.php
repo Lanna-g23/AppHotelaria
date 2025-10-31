@@ -7,10 +7,10 @@
    
     class AuthController{
         public static function login($conn, $data){
-            ValidatorController::validate_data($data, ["email, senha"]);
+            ValidatorController::validate_data($data, ["email", "password"]);
             
             $data['email'] = trim($data['email']);
-            $data['senha'] = trim($data['password']);
+            $data['password'] = trim($data['password']);
 
             //confimar se tem algum vazio
             if(empty($data['email']) || empty($data['password'])){
@@ -32,29 +32,29 @@
 
             }
     public static function loginClient($conn, $data){
-      ValidatorController::validate_data($data, ["email, password"]);
+      ValidatorController::validate_data($data, ["email", "password"]);
         // Confirmar se tem algum campo vazio
 
         $data['email'] = trim($data['email']);
-        $data['senha'] = trim($data['password']);
+        $data['password'] = trim($data['password']);
 
-        if (empty($data['email']) || empty($data['password'])) {
+        if ( empty($data['email']) || empty($data['password'])) {
             return jsonResponse(
                 [
                     "status" => "Erro",
                     "message" => "Preencha todos os campos"
 
-                ],400);
+                ],405);
         }
 
         $user = ClientModel::validateUserLogin($conn, $data['email'], $data['password']);
         if ($user) {
             $token = createToken($user);
-            return jsonResponse(["token" => $token]);
-        } else {
+            return jsonResponse([ "token" => $token ]);
+        }else{
             return jsonResponse(
                 [
-                    "reposta" => "Erro",
+                    "status" => "Erro",
                     "message" => "Credenciais invalidas"
 
                 ],401);

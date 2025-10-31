@@ -4,7 +4,7 @@
 
 class ReservationController{
     public static function create($conn, $data){
-        ValidatorController::validate_data($data, ["pedido_id, quarto_id, adicional_id, inicio, fim"]);
+        ValidatorController::validate_data($data, ["pedido_id", "quarto_id", "adicional_id", "inicio", "fim"]);
         $data["inicio"] = ValidatorController::fix_hours($data['inicio'], 14);
         $data["fim"] = ValidatorController::fix_hours($data["fim"], 12);
 

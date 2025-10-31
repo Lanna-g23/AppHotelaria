@@ -22,13 +22,11 @@ $subRoute = $segments[1] ??  null;
 
 
 if($route != "api"){
-
     /*vão fica mudando*/ 
-    require __DIR__ . "/public/index.html";
+    //require __DIR__ . "/public/index.html";
 
    //vão fica mudando
-   //require "teste.php";
-
+   require "teste.php";
     exit;
 }
 //back-end para rotas de requição (endpoint)
