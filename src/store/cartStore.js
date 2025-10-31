@@ -46,25 +46,26 @@ Estrutura JSON para exemplo de um item no carrinho:
 */ 
 
 const key = "hotel_cart";
-export function setCart(cart){
-    localStorage.setItem(key, JSON.stringify(cart));
+export function setCart(hotel_cart){
+    localStorage.setItem(key, JSON.stringify(hotel_cart));
 }
 
 export function getCart(){
     try{
         const raw = localStorage.getItem(key);
-        return raw ? JSON.parse(raw) : {status: "draft", items: []}
+        const hotel_cart = raw ? JSON.parse(raw) : [];
+        return Array.isArray(hotel_cart) ? hotel_cart : [];
     }catch{
-        return {status: "draft", items:[]};
+        return [];
 
     }
 }
 
 export function addItemToHotel_Cart(item){
-    const cart = getCart();
-    cart.items.push(item);
-    setCart(cart);
-    return cart;
+    const hotel_cart = getCart();
+    hotel_cart.push(item);
+    setCart(hotel_cart);
+    return hotel_cart;
 }
 
 export function removeItemFromHotel_Cart(i){
@@ -75,20 +76,15 @@ export function removeItemFromHotel_Cart(i){
 }
 
 export function clearHotel_Cart(){
-    setCart({
-        status: "draft",
-        items: []
-    });
+    setCart([]);
 }
 
 export function getTotalItems(){
-    const { items } = getCart();
+    const items = getCart();
     const total = items.reduce((acc, it) =>
-        acc + Number(it.subtotal || 0), 0
-    );
-    return{
-        total,
-        qtde_items: items.lenght
-    };
+        acc + Number(it.subtotal || 0), 0);
+    return total;
+        /*,
+        qtde_items: items.lenght*/
 }
 
